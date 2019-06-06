@@ -1,3 +1,7 @@
 .form-control.login-user{
   border: 0px solid #fff !important;
 }
+
+section{
+  margin:6em auto 0 auto;
+}

@@ -11,6 +11,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ClientPageComponent } from './components/client-page/client-page.component';
+import { EmployeePageComponent } from './components/employee-page/employee-page.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { FormsModule } from '@angular/forms';
     RegisterComponent,
     Page404Component,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    ClientPageComponent,
+    EmployeePageComponent
   ],
   imports: [
     BrowserModule,

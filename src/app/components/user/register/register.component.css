@@ -1,7 +1,26 @@
+.container{
+  width: 100%;
+}
 section{
   margin:6em auto 0 auto;
+  width: 100%;
+}
+
+
+.card{
+  width: 25rem;
+
+}
+
+.form-group{
+  width: 50%;
+  float: left;
 }
 
 .form-control.login-user{
   border: 0px solid #fff !important;
+  margin-left: 50%;
 }
+
+
+

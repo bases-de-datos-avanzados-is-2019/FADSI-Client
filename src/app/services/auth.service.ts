@@ -15,23 +15,23 @@ export class AuthService {
     'Conten-Type': 'application/json'
   });
 
-  registerUser(nombre: string, primerApellido: string, segundoApellido: string, cedula: string,
-               telefono: string, email: string, fechaNacimimiento: string, username: string,
-               password: string, tipoUsuario: string ){
+  registerUser(name: string, lastName1: string, lasteName2: string, idNumber: string,
+               phoneNumber: string, email: string, birthday: string, username: string,
+               password: string, userType: string ){
     const urlApi = 'https://fadsi.herokuapp.com/api/Users';
     return this.http.post<UserInterface>(
       urlApi,
       {
-        nombre,
-        primerApellido,
-        segundoApellido,
-        cedula,
-        telefono,
+        name,
+        lastName1,
+        lasteName2,
+        idNumber,
+        phoneNumber,
         email,
-        fechaNacimimiento,
+        birthday,
         username,
         password,
-        tipoUsuario
+        userType
       },
       { headers: this.headers}
       )

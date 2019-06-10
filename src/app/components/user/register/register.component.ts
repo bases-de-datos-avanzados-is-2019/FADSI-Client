@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { UserInterface } from './../../../models/user-interface';
 import { AuthService } from './../../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,18 +11,18 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private location: Location) { }
   public user: UserInterface = {
-    nombre: '',
-    primerApellido: '',
-    segundoApellido: '',
-    cedula: '',
-    telefono: '',
+    name: '',
+    lastName1: '',
+    lastName2: '',
+    idNumber: '',
+    phoneNumber: '',
     email: '',
-    fechaNacimiento: '',
+    birthday: '',
     username: '',
     password: '',
-    tipoUsuario: 'cliente'
+    userType: 'client'
   };
 
   ngOnInit() {
@@ -29,21 +30,23 @@ export class RegisterComponent implements OnInit {
 
   onRegister(): void{
     this.authService.registerUser(
-      this.user.nombre,
-      this.user.primerApellido,
-      this.user.segundoApellido,
-      this.user.cedula,
-      this.user.telefono,
+      this.user.name,
+      this.user.lastName1,
+      this.user.lastName2,
+      this.user.idNumber,
+      this.user.phoneNumber,
       this.user.email,
-      this.user.fechaNacimiento,
+      this.user.birthday,
       this.user.username,
       this.user.password,
-      this.user.tipoUsuario
+      this.user.userType
     ).subscribe(user => {
       this.authService.setUser(user);
       const token = user.id;
       this.authService.setToken(token);
-      this.router.navigate(['/']);
+      this.router.navigate(['/user/client']);
+      this.location.replaceState('/user/client');
+      location.reload();
     });
   }
 

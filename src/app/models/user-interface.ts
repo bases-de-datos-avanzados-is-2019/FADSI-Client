@@ -1,13 +1,13 @@
 export interface UserInterface{
-  nombre?: string;
-  primerApellido?: string;
-  segundoApellido?: string;
-  cedula?: string;
-  telefono?: string;
+  name?: string;
+  lastName1?: string;
+  lastName2?: string;
+  idNumber?: string;
+  phoneNumber?: string;
   email?: string;
-  fechaNacimiento?: string;
+  birthday?: string;
   username?: string;
   password?: string;
-  tipoUsuario?: string;
+  userType?: string;
   id?: string;
 }

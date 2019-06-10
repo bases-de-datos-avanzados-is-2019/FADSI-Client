@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AuthService } from './../../services/auth.service';
+import { Component, OnInit, OnChanges} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +9,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
-  public appName = 'Fast Delivery Service Inc.'
+  constructor(private authService: AuthService, private router: Router) { }
+  public appName = 'Fast Delivery Service Inc.';
+  public isClient = false;
+  public isEmployee = false;
+  public isLogged = false;
+
   ngOnInit() {
+    this.onCheckUser();
+  }
+
+
+
+  onLogOut() {
+    this.authService.logoutUser().subscribe();
+    this.router.navigate(['/']);
+    this.onCheckUser();
+  }
+
+  onCheckUser(): void {
+    const currentUser = this.authService.getCurrentUser();
+    if ( currentUser === null) {
+      this.isClient = false;
+      this.isEmployee = false;
+      this.isLogged = false;
+    } else {
+      this.isLogged = true;
+      if(currentUser.userType === 'client'){
+        this.isClient = true;
+      } else {
+        this.isEmployee = true;
+      }
+    }
   }
 
 }

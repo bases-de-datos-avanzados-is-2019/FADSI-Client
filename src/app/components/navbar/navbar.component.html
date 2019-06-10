@@ -6,11 +6,23 @@
 
     <div class="collapse navbar-collapse" id="mainNabvar">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+        <li class="nav-item" *ngIf='!isLogged'>
           <a class="nav-link" routerLink="/user/login">Log In</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf='!isLogged'>
           <a class="nav-link" routerLink="/user/register">Register</a>
+        </li>
+        <li class="nav-item" *ngIf='isEmployee'>
+            <a class="nav-link">Add Site</a>
+        </li>
+        <li class="nav-item" *ngIf='isEmployee'>
+            <a class="nav-link">Delete Site</a>
+        </li>
+        <li class="nav-item" *ngIf='isClient'>
+            <a class="nav-link">Order</a>
+        </li>
+        <li class="nav-item" *ngIf='isLogged'>
+            <a class="nav-link" (click)="onLogOut()">Log Out</a>
         </li>
       </ul>
     </div>

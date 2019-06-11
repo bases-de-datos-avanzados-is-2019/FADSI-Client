@@ -8,7 +8,11 @@ import { } from 'googlemaps';
   styleUrls: ['./site-regiister.component.css']
 })
 export class SiteRegiisterComponent implements OnInit {
+  public latitude: number;
+  public longitude: number;
+
   @ViewChild('search') public searchElement: ElementRef;
+
 
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, ) { }
 
@@ -24,6 +28,11 @@ export class SiteRegiisterComponent implements OnInit {
             if( place.geometry === undefined || place.geometry === null )   {
               return;
             }
+
+            this.longitude = place.geometry.location.lng();
+            this.latitude = place.geometry.location.lat();
+
+
           });
         });
       }

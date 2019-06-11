@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
       this.authService.setUser(data.user);
       const token = data.id;
       this.authService.setToken(token);
-      if (data.user.tipoUsuario === 'client') {
+      if (data.user.userType === 'client') {
         this.router.navigate(['/user/client']);
         this.location.replaceState('/user/client');
         location.reload();

@@ -1,3 +1,4 @@
+import { SiteRegiisterComponent } from './components/site-regiister/site-regiister.component';
 import { ClientPageComponent } from './components/client-page/client-page.component';
 import { HomeComponent } from './components/home/home.component';
 import { Page404Component } from './components/page404/page404.component';
@@ -6,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegisterComponent } from './components/user/register/register.component';
 import { EmployeePageComponent } from './components/employee-page/employee-page.component';
+import { SiteDeleteComponent } from './components/site-delete/site-delete.component';
 
 
 const routes: Routes = [
@@ -14,6 +16,8 @@ const routes: Routes = [
   {path: 'user/register', component: RegisterComponent},
   {path: 'user/client', component: ClientPageComponent},
   {path: 'user/employee', component: EmployeePageComponent},
+  {path: 'user/employee/addSite', component: SiteRegiisterComponent},
+  {path: 'user/employee/deleteSite', component: SiteDeleteComponent},
   {path: '**', component: Page404Component}// Deber ir al final del array de rutas
 ];
 

@@ -13,10 +13,10 @@
           <a class="nav-link" routerLink="/user/register">Register</a>
         </li>
         <li class="nav-item" *ngIf='isEmployee'>
-            <a class="nav-link">Add Site</a>
+            <a class="nav-link" routerLink="/user/employee/addSite">Add Site</a>
         </li>
         <li class="nav-item" *ngIf='isEmployee'>
-            <a class="nav-link">Delete Site</a>
+            <a class="nav-link" routerLink='/user/employee/deleteSite'>Delete Site</a>
         </li>
         <li class="nav-item" *ngIf='isClient'>
             <a class="nav-link">Order</a>

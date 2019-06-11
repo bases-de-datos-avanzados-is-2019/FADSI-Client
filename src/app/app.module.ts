@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,8 @@ import { HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ClientPageComponent } from './components/client-page/client-page.component';
 import { EmployeePageComponent } from './components/employee-page/employee-page.component';
+import { SiteRegiisterComponent } from './components/site-regiister/site-regiister.component';
+import { SiteDeleteComponent } from './components/site-delete/site-delete.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +26,19 @@ import { EmployeePageComponent } from './components/employee-page/employee-page.
     NavbarComponent,
     HomeComponent,
     ClientPageComponent,
-    EmployeePageComponent
+    EmployeePageComponent,
+    SiteRegiisterComponent,
+    SiteDeleteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBskqiCRbNXTxnCuKH056ZZeMpwDPbjM4c ',
+      libraries: ['places']
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,47 +2,73 @@
 <section id="register">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-4 mx-auto">
-        <div class="card_register">
-          <div class="card">
-            <div class="card-body text-center">
+        <div class="col-lg-2"></div>
+      <div class="col-lg-8 text-center">
+       
               <form #formRegister="ngForm" (ngSubmit)="onRegister()">
-                <h1 class="h3 mb-3 font-weight-normal">Register</h1>
-                <div class="form-group">
-                  <input type="text" id="name" name="name" class="form-control" placeholder="Name" [(ngModel)]="user.name" required>
+                  
+                <h1 class="h3 mb-3 font-weight-normal">CREATE NEW ACCOUNT</h1>
+                <img src="http://i.imgur.com/ZFidTmK.png" width="100" height="100" class="d-inline-block align-top" alt="">
+                
+                      <div class="row">
+                        <div class="col-6">
+                                <div style="margin: 15px; text-align: left">
+                                  <label>Name</label>
+                                  <input type="text" id="name" name="name" class="form-control" placeholder="Ex. Jhon" [(ngModel)]="user.name" required>
+                                </div>
+                                <div style="margin: 15px; text-align: left">
+                                  <label>First Last Name</label>
+                                  <input type="text" id="lastName1" name="lastName1" class="form-control" placeholder="Ex . Smith" [(ngModel)]="user.lastName1" required>
+                                </div>
+                                <div style="margin: 15px; text-align: left">
+                                    <label>Second Last Name</label>
+                                    <input type="text" id="lastName2" name="lastName2" class="form-control" placeholder="Ex. Gordon" [(ngModel)]="user.lastName2" required>
+                                </div>
+                                <div style="margin: 15px; text-align: left">
+                                    <label>ID Number</label>
+                                    <input type="text" id="IdCard" name="idCard" class="form-control" placeholder="Ex. 116380678" [(ngModel)]="user.idNumber" required>
+                                </div>
+                                <div style="margin: 15px; text-align: left">
+                                    <label>Phone Number</label>
+                                    <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Ex. 87236762" [(ngModel)]="user.phoneNumber" required>
+                                </div>
+                      </div>
+
+                      <div class="col-6">
+                                <div style="margin: 15px; text-align: left">
+                                    <label>Email Address</label>
+                                    <input type="text" id="email" name="email" class="form-control" placeholder="Ex. you@mail.com" [(ngModel)]="user.email" required>
+                                </div>
+                                <div style="margin: 15px; text-align: left">
+                                    <label>Date of Birth</label>
+                                    <input type="date" id="birthday" name="birthday" class="form-control" placeholder="Birthday" [(ngModel)]="user.birthday" required>
+                                </div>
+                                <div style="margin: 15px; text-align: left">
+                                    <label>Username</label>
+                                    <input type="text" id="userName" name="userName" class="form-control" placeholder="Ex. jhonSmith" [(ngModel)]="user.username" required>
+                                </div>
+                                <div style="margin: 15px; text-align: left">
+                                    <label>Password</label>
+                                    <input type="password" id="password" name="password" class="form-control"  [(ngModel)]="user.password" required>
+                                </div>
+                                <div style="margin: 15px; text-align: left">
+                                    <label> Confirm Password</label>
+                                    <input type="password" id="password2" name="password2" class="form-control"  [(ngModel)]="user.password2" required>
+                                </div>
+                                
+                      </div>
                 </div>
-                <div class="form-group">
-                    <input type="text" id="lastName1" name="lastName1" class="form-control" placeholder="Lastname" [(ngModel)]="user.lastName1" required>
+
+                <div class="row">
+                  <div class="col-4"></div>
+                  <div class="col-4" style="margin-top: 20px">
+                      <button type="submit" class="btn btn-secondary btn-lg btn-block">Sign Up</button>
+                  </div>
                 </div>
-                <div class="form-group">
-                    <input type="text" id="lastName2" name="lastName2" class="form-control" placeholder="Lastname" [(ngModel)]="user.lastName2" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" id="IdCard" name="idCard" class="form-control" placeholder="Id Number" [(ngModel)]="user.idNumber" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Phone Number" [(ngModel)]="user.phoneNumber" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" id="email" name="email" class="form-control" placeholder="email" [(ngModel)]="user.email" required>
-                </div>
-                <div class="form-group">
-                    <input type="date" id="birthday" name="birthday" class="form-control" placeholder="Birthday" [(ngModel)]="user.birthday" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" id="userName" name="userName" class="form-control" placeholder="Username" [(ngModel)]="user.username" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" [(ngModel)]="user.password" required>
-                </div>
-                <button type="submit" class="btn btn-secondary btn-lg btn-block">Register</button>
-                <div class="form-group">
-                  <a routerLink="/user/login" class="form-control login-user">Do you have an account?</a>
-                </div>
+                
+
               </form>
-            </div>
-          </div>
-        </div>
+    
       </div>
     </div>
   </div>

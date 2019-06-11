@@ -7,7 +7,8 @@
             <div class="card">
               <div class="card-body text-center">
                 <form #formRegister="ngForm" (ngSubmit)="onLogin()">
-                  <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+                  <h1 class="h3 mb-3 font-weight-normal">LOGIN</h1>
+                  <img src="http://i.imgur.com/ZFidTmK.png" width="100" height="100" class="d-inline-block align-top" alt="">
                   <div class="form-group">
                       <input type="text" id="userName" name="userName" class="form-control" placeholder="Username" [(ngModel)]="user.username" required>
                   </div>
@@ -16,7 +17,12 @@
                   </div>
                   <button type="submit" class="btn btn-secondary btn-lg btn-block">Login</button>
                   <div class="form-group">
-                    <a routerLink="/user/register" class="form-control login-user">Do not have an account?</a>
+                    <p class="login-user form-control">
+                      Don't have an account yet? Sign up 
+                      <a routerLink="/user/register" class="form-control login-user" style="text-decoration: underline,blue;">here.</a>
+                      
+                    </p>
+                    
                   </div>
                 </form>
               </div>

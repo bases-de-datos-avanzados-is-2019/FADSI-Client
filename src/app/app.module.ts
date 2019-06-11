@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -36,7 +37,7 @@ import { SiteDeleteComponent } from './components/site-delete/site-delete.compon
     HttpClientModule,
     FormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBskqiCRbNXTxnCuKH056ZZeMpwDPbjM4c ',
+      apiKey: environment.MAPS_API,
       libraries: ['places']
     })
   ],

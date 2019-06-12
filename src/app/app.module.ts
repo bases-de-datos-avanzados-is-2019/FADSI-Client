@@ -18,6 +18,10 @@ import { EmployeePageComponent } from './components/employee-page/employee-page.
 import { SiteRegiisterComponent } from './components/site-regiister/site-regiister.component';
 import { SiteDeleteComponent } from './components/site-delete/site-delete.component';
 
+// Externals
+import { NgxSpinnerModule } from 'ngx-spinner';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,11 +38,13 @@ import { SiteDeleteComponent } from './components/site-delete/site-delete.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgxSpinnerModule,
     HttpClientModule,
     FormsModule,
     AgmCoreModule.forRoot({
       apiKey: environment.MAPS_API,
       libraries: ['places']
+  
     })
   ],
   providers: [],

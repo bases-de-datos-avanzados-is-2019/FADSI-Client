@@ -1,27 +1,63 @@
 <section id="register">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-4 mx-auto">
+        <div class="col-xs-12 col-sm-6 col-md-6 mx-auto">
           <div class="card_register">
             <div class="card">
               <div class="card-body text-center">
                 <form #formRegister="ngForm">
                   <h1 class="h3 mb-3 font-weight-normal">Site Register</h1>
-                  <div class="form-group">
-                    <input type="text" id="name" name="name" class="form-control" placeholder="Name"  required>
-                  </div>
-                  <div class="form-group">
-                      <input type="text" id="latitude" name="latitude" class="form-control" [value]="latitude" placeholder="Latitude" required>
-                  </div>
-                  <div class="form-group">
-                      <input type="text" id="longitude" name="longitude" class="form-control" [value]="longitude" placeholder="Longitude" required>
-                  </div>
+                  <div class="container" name="geographicProperties" *ngIf="geoStep">
+                  <label>Geographic properties</label><br>
                   <div class="form-group">
                       <input type="text" id="adress" name="adress" class="form-control" placeholder="Adress" autocorrect="off" autocapitalize="off"
-                      spellcheck="off" #search required>
+                      spellcheck="off" #search >
                   </div>
-                  <button type="submit" class="btn btn-secondary btn-lg btn-block">Register</button>
                   <div class="form-group">
+                      <input type="number" id="latitude" name="latitude" [(ngModel)]="inputLatitude" class="form-control"  placeholder="Latitude" required>
+                  </div>
+                  <div class="form-group">
+                      <input type="number" id="longitude" name="longitude" [(ngModel)]="inputLongitude" class="form-control"  placeholder="Longitude" required>
+                  </div>
+                  <button type="submit" (click)='searchAddress()' class="btn btn-secondary btn-lg btn-block">Search by coordinates</button>
+                  <label name="longitudeLabel">Geographic values selected:</label><br>
+                  <label name="longitudeLabel">Longitude: {{longitude}}</label><br>
+                  <label name="latitudeLabel">Latitude: {{latitude}}</label><br>
+                  <label name="addressLabel">Address: {{address}}</label><br>
+                  <button type="submit" class="btn btn-secondary btn-lg btn-block" (click)="setGeneralStep()">Next</button>
+                  </div>
+                  <div class="container" name="generalProperties" *ngIf="generalStep">
+                      <label>General properties</label><br>
+                    <div class="form-group">
+                      <input type="text" id="siteName" name="siteName" [(ngModel)]="siteName" class="form-control" placeholder="Name"  required="true">
+                    </div>
+                    <div class="form-group">
+                      <input type="number" id="numberEmployees" name="numberEmployees" [(ngModel)]="numberEmployees" class="form-control" placeholder="Number of employees"  required="true">
+                    </div>
+                    <div class="form-group">
+                      <textarea name="description" id="description" cols="30" rows="5" [(ngModel)]="siteDescription" class="form-control" placeholder="Description" required="true"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-secondary btn-lg btn-block" (click)="setProductStep()">Next</button>
+                  </div>
+                  <div class="cotainer" name="productsProperties" *ngIf="productStep">
+                      <label>Product properties</label><br>
+                    <div class="form-group">
+                      <input type="text" id="productName" name="productName" [(ngModel)]="productName" class="form-control" placeholder="Name of product"  required>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" id="productCode" name="productCode" [(ngModel)]="productCode" class="form-control" placeholder="Code of product"  required>
+                    </div>
+                    <div class="form-group">
+                      <input type="number" id="productPrice" name="productPrice" [(ngModel)]="productPrice" class="form-control" placeholder="Price of product"  required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="productPhoto" name="productPhoto" [(ngModel)]="productPhoto" class="form-control" placeholder="Photo of product" >
+                    </div>
+                    <div class="form-group">
+                        <textarea name="productDescription" id="productDescription" cols="30" rows="5" [(ngModel)]="productDescription" class="form-control" placeholder="Description of product" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-secondary btn-lg btn-block" (click)="addProduct()">Add Product</button>
+                    <button type="submit" class="btn btn-secondary btn-lg btn-block" (click)="postSite()">Register Site</button>
                   </div>
                 </form>
               </div>

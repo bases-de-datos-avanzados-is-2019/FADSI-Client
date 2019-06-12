@@ -12,33 +12,21 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
   headers: HttpHeaders = new HttpHeaders({
-    'Conten-Type': 'application/json'
+    'Content-Type': 'application/json'
   });
 
   registerUser(name: string, lastName1: string, lasteName2: string, idNumber: string,
                phoneNumber: string, email: string, birthday: string, username: string,
-               password: string, userType: string ){
+               password: string, userType: string ) {
     const urlApi = 'https://fadsi.herokuapp.com/api/Users';
     return this.http.post<UserInterface>(
       urlApi,
-      {
-        name,
-        lastName1,
-        lasteName2,
-        idNumber,
-        phoneNumber,
-        email,
-        birthday,
-        username,
-        password,
-        userType
-      },
-      { headers: this.headers}
-      )
+      {name, lastName1, lasteName2, idNumber, phoneNumber, email, birthday, username, password, userType},
+      { headers: this.headers})
       .pipe(map(data => data));
   }
 
-  loginUser(username: string, password: string): Observable<any>{
+  loginUser(username: string, password: string): Observable<any> {
     const urlApi = 'https://fadsi.herokuapp.com/api/Users/login?include=user';
     return this.http.post<UserInterface>(
       urlApi,
@@ -56,17 +44,17 @@ export class AuthService {
     localStorage.setItem('currentUser', userString);
   }
 
-  setToken(token): void{
+  setToken(token): void {
     localStorage.setItem('accessToken', token);
   }
 
-  getToken(){
+  getToken() {
     return localStorage.getItem('accessToken');
   }
 
-  getCurrentUser(): UserInterface{
+  getCurrentUser(): UserInterface {
     const userString = localStorage.getItem('currentUser');
-    if(!isNullOrUndefined(userString)){
+    if (!isNullOrUndefined(userString)) {
       const user: UserInterface = JSON.parse(userString);
       return user;
     } else {
@@ -74,7 +62,7 @@ export class AuthService {
     }
   }
 
-  logoutUser(){
+  logoutUser() {
     const accessToken = localStorage.getItem('accessToken');
     const urlApi = `https://fadsi.herokuapp.com/api/Users/logout?access_token=${accessToken}`;
     localStorage.removeItem('accessToken');

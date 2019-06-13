@@ -11,6 +11,23 @@ export class SiteService {
     'Content-Type': 'application/json'
   });
   constructor(private http: HttpClient) { }
+  public selectedSite : SiteInterface = {
+    latitude: 0,
+    longitude: 0,
+    location: null,
+    address: '',
+    name: 'Test Name',
+    description: '',
+    deliveryPersonnelQuantity: 0,
+    type: null,
+    rating: 0,
+    image: '',
+    telephoneNumber: '',
+    openingHours: null,
+    website: '',
+    products: null,
+    id: '',
+  };
 
   postSite(latitude: number, longitude: number, location: object, address: string, name: string,
            description: string, deliveryPersonnelQuantity: number, type: string[], rating: number,

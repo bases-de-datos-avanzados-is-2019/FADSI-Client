@@ -20,6 +20,7 @@ import { SiteDeleteComponent } from './components/site-delete/site-delete.compon
 
 // Externals
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ModalComponent } from './components/modal/modal.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ClientPageComponent,
     EmployeePageComponent,
     SiteRegiisterComponent,
-    SiteDeleteComponent
+    SiteDeleteComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

@@ -1,73 +1,22 @@
 <div class="container-fluid" style="margin-top: 105px">
 
-    
-  <div class="row" style="background-color: red">
-
-    <div class="col-12" style="background-color:slateblue">
-      <div class="col-md-4">
-        <div class="card mb-4 box-shadow">
-          <img class="card-img-top" src="http://i.imgur.com/ZFidTmK.png" alt="Card image cap">
+  <div class="row">
+      <div class="col-md-4" *ngFor="let site of sites">
+        <div class="card mb-4 box-shadow" style="background-color: #F9F9F9; border: none">
+          <img class="card-img-top" src="{{site.image}}" alt="Card image cap" style="height: 300px; width:320px; margin:10px">
           <div class="card-body">
-            <h3 class="card-title" id="titleCard">Example title</h3>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-              content. This content is a little bit longer.</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-md btn-secondary" data-toggle="modal" data-target=".bd-example-modal-lg">View</button>
-              </div>
-              <small class="text-muted">9 Miles away</small>
-            </div>
+            <h4 class="card-title" id="titleCard" style="margin-bottom: 20px">{{site.name}}</h4>
+            <p class="card-text">{{site.description}}</p>
+            <span class="badge badge-pill badge badge-secondary" *ngFor="let type of site.type">{{type}}</span>
+            
+            <div class="row" style="margin-top: 20px">
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#SiteModal" style="width: 300px; margin-left: 15px" (click)="onViewSite(site)">View</button>
+            </div>      
           </div>
         </div>
       </div>
-    </div>
-
   </div>
-
 </div>
+<app-modal></app-modal>
 
-<!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-6" style="background-color: slateblue">
-                        <p>holder</p>
-                    </div>
-                    <div class="col-6" style="background-color: red; margin-top: 15px">
-                            <h4 class="d-flex justify-content-between align-items-center mb-3">
-                                    <span class="text-muted">Your cart</span>
-                                    <span class="badge badge-secondary badge-pill">3</span>
-                                  </h4>
-                                  <ul class="list-group mb-3" style="height: 300px" id="CartList">
-                                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                      <div>
-                                        <h6 class="my-0">Product name</h6>
-                                        <small class="text-muted">Brief description</small>
-                                      </div>
-                                      <span class="text-muted">$12</span>
-                                    </li>
-                                  </ul>
-                                  <ul class="list-group mb-3">
-                                        <li class="list-group-item d-flex justify-content-between">
-                                                <span>Total (USD)</span>
-                                                <strong>$20</strong>
-                                              </li>
-                                  </ul>
-                        </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
+

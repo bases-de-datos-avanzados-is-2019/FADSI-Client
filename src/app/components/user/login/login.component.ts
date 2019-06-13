@@ -22,22 +22,24 @@ export class LoginComponent implements OnInit {
   onLogin(){
     return this.authService.loginUser(this.user.username, this.user.password)
     .subscribe(data => {
-      this.authService.setUser(data.user);
-      const token = data.id;
-      this.authService.setToken(token);
-      if (data.user.userType === 'client') {
-        this.router.navigate(['/user/client']);
-        this.location.replaceState('/user/client');
-        location.reload();
-      } else {
-        this.router.navigate(['/user/employee']);
-        this.location.replaceState('/user/employee');
-        location.reload();
-      }
-
-
+        this.authService.setUser(data.user);
+        const token = data.id;
+        this.authService.setToken(token);
+        if (data.user.userType === 'client') {
+          this.router.navigate(['/user/client']);
+          this.location.replaceState('/user/client');
+          location.reload();
+        } else {
+          this.router.navigate(['/user/employee']);
+          this.location.replaceState('/user/employee');
+          location.reload();
+        }
     },
-    error => console.log(error.mesage));
+    error => {
+      window.alert('Login failed: Bad credentials');
+      this.user.username = '';
+      this.user.password = '';
+    });
   }
 
 }

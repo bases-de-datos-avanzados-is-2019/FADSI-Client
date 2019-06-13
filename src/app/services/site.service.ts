@@ -13,8 +13,8 @@ export class SiteService {
   constructor(private http: HttpClient) { }
 
   postSite(latitude: number, longitude: number, location: object, address: string, name: string,
-           description: string, deliveryPersonnelQuantity: number, type: string, rating: number,
-           image: string, telephoneNumber: string, openingHours: [string], website: string, products: [object] ) {
+           description: string, deliveryPersonnelQuantity: number, type: string[], rating: number,
+           image: string, telephoneNumber: string, openingHours: string[], website: string, products: [object] ) {
     const urlApi = 'https://fadsi.herokuapp.com/api/sites';
     return this.http.post<SiteInterface>(
       urlApi,
@@ -22,5 +22,10 @@ export class SiteService {
        image, telephoneNumber, openingHours, website, products},
       {headers: this.headers})
       .pipe(map(data => data));
+  }
+
+  getSites() {
+    const urlApi = 'https://fadsi.herokuapp.com/api/sites';
+    return this.http.get(urlApi);
   }
 }

@@ -1,3 +1,4 @@
+import { SiteInterface } from './../../models/site-interface';
 import { SiteService } from './../../services/site.service';
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
@@ -16,11 +17,11 @@ export class SiteRegiisterComponent implements OnInit {
   public numberEmployees: number;
   public siteDescription: string;
   public location: object;
-  public type: string;
+  public type: string[];
   public rating: number;
   public image: string;
   public telephoneNumber: string;
-  public openingHours: [string];
+  public openingHours: string[];
   public website: string;
   public productName: string;
   public productCode: string;
@@ -28,12 +29,14 @@ export class SiteRegiisterComponent implements OnInit {
   public productPhoto: string;
   public productDescription: string;
   public productArray: [object];
+
   public geoCoder;
   public inputLatitude: number;
   public inputLongitude: number;
   public geoStep: boolean;
   public generalStep: boolean;
   public productStep: boolean;
+  public sites: SiteInterface;
 
   @ViewChild('search') public searchElement: ElementRef;
 
@@ -46,32 +49,57 @@ export class SiteRegiisterComponent implements OnInit {
 
 
   ngOnInit() {
+    this.getListSites();
+
     this.mapsAPILoader.load().then(
       () => {
         this.geoCoder = new google.maps.Geocoder();
         const autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement,
-          { types: [], componentRestrictions: { country: 'CR'}});
+          { types: [] });
         autocomplete.addListener('place_changed', () => {
-          this.ngZone.run(() => {
-            const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          this.ngZone.run(async () => {
+            const place: google.maps.places.PlaceResult = await autocomplete.getPlace();
             if ( place.geometry === undefined || place.geometry === null )   {
               return;
+            } else {
+            this.longitude = await place.geometry.location.lng();
+            this.latitude = await place.geometry.location.lat();
+            this.address = place.formatted_address;
+            this.website = place.website;
+            this.image = place.photos[0].getUrl({maxWidth: 500, maxHeight: 500});
+            this.telephoneNumber = place.international_phone_number;
+            this.rating = place.rating;
+            this.openingHours = place.opening_hours.weekday_text;
+            this.type = place.types;
             }
-            this.longitude = place.geometry.location.lng();
-            this.latitude = place.geometry.location.lat();
-            this.getAddress(this.latitude, this.longitude);
+
           });
         });
       }
     );
   }
 
-  getAddress(latitude: number, longitude: number) {
-    this.geoCoder.geocode({ location: { lat: latitude, lng: longitude } }, (results, status) => {
-      console.log(status);
+    getAddress(latitude: number, longitude: number) {
+    this.geoCoder.geocode({ location: { lat: latitude, lng: longitude } }, async(results, status) => {
+      console.log(results);
       if (status === 'OK') {
         if (results[0]) {
-          this.address = results[0].formatted_address;
+          const request = {
+            placeId: results[0].place_id,
+            fields: ['photos', 'international_phone_number', 'rating', 'opening_hours', 'website', 'types']
+          };
+          const service = new google.maps.places.PlacesService(document.createElement('div'));
+          service.getDetails(request, function (place, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+              this.address = place.formatted_address;
+              this.website = place.website;
+              this.image = place.photos[0].getUrl({maxWidth: 500, maxHeight: 500});
+              this.telephoneNumber = place.international_phone_number;
+              this.rating = place.rating;
+              this.openingHours = place.opening_hours.weekday_text;
+              this.type = place.types;
+            }
+          } );
         } else {
           window.alert('No results found');
           this.address = 'No results found';
@@ -125,12 +153,21 @@ export class SiteRegiisterComponent implements OnInit {
       lat: this.latitude,
       lng: this.longitude
     };
+    console.log(this.siteDescription);
+    this.setGeographicStep();
     return this.siteService.postSite(this.latitude, this.longitude, this.location, this.address, this.siteName,
       this.siteDescription, this.numberEmployees, this.type, this.rating, this.image, this.telephoneNumber,
       this.openingHours, this.website, this.productArray).subscribe(data =>{
         console.log(data);
         this.setGeographicStep();
       });
+  }
+
+  async getListSites() {
+    await this.siteService.getSites().subscribe((sites: SiteInterface) => {
+       this.sites = sites;
+      });
+
   }
 }
 

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  public password2: string;
 
   constructor(private authService: AuthService, private router: Router, private location: Location) { }
   public user: UserInterface = {
@@ -47,6 +48,17 @@ export class RegisterComponent implements OnInit {
       this.router.navigate(['/user/client']);
       this.location.replaceState('/user/client');
       location.reload();
+    }, error => {
+      const emailFailed = error.error.error.details.messages.email;
+      const userFailed = error.error.error.details.messages.username;
+      if (emailFailed) {
+        window.alert(emailFailed);
+        this.user.email = '';
+      } else {
+        window.alert(userFailed);
+        this.user.username = '';
+      }
+
     });
   }
 

@@ -6,11 +6,12 @@ export interface SiteInterface {
   name: string;
   description: string;
   deliveryPersonnelQuantity: number;
-  type?: string;
+  type?: [string];
   rating?: number;
   image?: string;
   telephoneNumber?: string;
   openingHours?: [string];
   website?: string;
   products?: [object];
+  id?: string;
 }

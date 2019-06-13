@@ -38,6 +38,8 @@ export class SiteRegiisterComponent implements OnInit {
   public productStep: boolean;
   public sites: SiteInterface;
 
+
+
   @ViewChild('search') public searchElement: ElementRef;
 
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private siteService: SiteService) {
@@ -46,10 +48,7 @@ export class SiteRegiisterComponent implements OnInit {
     this.productStep = false;
    }
 
-
   ngOnInit() {
-    this.getListSites();
-
     this.mapsAPILoader.load().then(
       () => {
         this.geoCoder = new google.maps.Geocoder();

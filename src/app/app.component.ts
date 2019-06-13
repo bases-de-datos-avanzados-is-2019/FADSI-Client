@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService} from 'ngx-spinner';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,7 +9,7 @@ import { NgxSpinnerService} from 'ngx-spinner';
 })
 export class AppComponent implements OnInit {
   title = 'fadsi-client';
-  constructor(private spinnerService: NgxSpinnerService){
+  constructor(private spinnerService: NgxSpinnerService) {
 
   }
 

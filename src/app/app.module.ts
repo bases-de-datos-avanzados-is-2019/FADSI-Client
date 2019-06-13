@@ -47,8 +47,8 @@ import { CartComponent } from './components/cart/cart.component';
     FormsModule,
     AgmCoreModule.forRoot({
       apiKey: environment.MAPS_API,
-      libraries: ['places']
-  
+      libraries: ['places', 'geometry']
+
     })
   ],
   providers: [],

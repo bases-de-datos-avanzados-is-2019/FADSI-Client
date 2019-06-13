@@ -31,9 +31,9 @@
                 Delete Site</a>
         </li>
         <li class="nav-item" *ngIf='isClient'>
-            <a class="nav-link">
-                <i class="fa fa-fw fa-plus" style="color:white"></i>
-                Order</a>
+            <a class="nav-link" routerLink="/cart">
+                <i class="fa fa-fw fa-shopping-cart" style="color:white"></i>
+                Cart</a>
         </li>
         <li class="nav-item" *ngIf='isLogged'>
             <a class="nav-link" (click)="onLogOut()">

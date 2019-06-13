@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<section id="order">
+<div class="container-fluid" style="margin-top: 105px">
+  <div class="row">
+    <div class="col-12">
+      <h1>Your Cart</h1>
+      <div>
+        <ul>
+          <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let product of internalOrder.products | slice:1">
+                <div>
+                  <img src="{{product.photo}}" style="width: 50px; height:50px">
+                  <h6 class="my-0">{{product.name}}</h6>
+                  <span class="text-muted">{{product.store}}</span>
+                  <div>
+                      <span class="badge badge-pill badge-secondary">{{product.quantity}}</span> 
+                  </div>
+                  
+                 
+                </div>
+
+                <div>
+                   
+                    <h3 style="color: blue"> Price (CRC){{product.price}}</h3>
+                </div>
+
+                <div>
+                    <span class="badge badge-pill badge-danger float-right">
+                      <i class="fa fa-fw fa-times" style="color:white">
+                      </i></span>
+                     
+                </div>
+                  
+          </li>
+        </ul>
+      </div>
+        <form #formOrder="ngForm" (ngSubmit)="onSubmit()">
+          <button type="submit" class="btn btn-secondary btn-lg float-right"> Place Order</button>
+        </form>
+    </div>
+  </div>
+    
+
+    
+</div>
+</section>

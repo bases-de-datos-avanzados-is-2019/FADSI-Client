@@ -21,6 +21,7 @@ import { SiteDeleteComponent } from './components/site-delete/site-delete.compon
 // Externals
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ModalComponent } from './components/modal/modal.component';
+import { CartComponent } from './components/cart/cart.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ModalComponent } from './components/modal/modal.component';
     EmployeePageComponent,
     SiteRegiisterComponent,
     SiteDeleteComponent,
-    ModalComponent
+    ModalComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

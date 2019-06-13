@@ -14,7 +14,8 @@ export class SiteService {
 
   postSite(latitude: number, longitude: number, location: object, address: string, name: string,
            description: string, deliveryPersonnelQuantity: number, type: string[], rating: number,
-           image: string, telephoneNumber: string, openingHours: string[], website: string, products: [object] ) {
+           // tslint:disable-next-line:whitespace
+           image: string, telephoneNumber: string, openingHours: string[], website: string, products: any[] ) {
     const urlApi = 'https://fadsi.herokuapp.com/api/sites';
     return this.http.post<SiteInterface>(
       urlApi,

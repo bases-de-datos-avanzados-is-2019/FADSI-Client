@@ -28,7 +28,7 @@ export class SiteRegiisterComponent implements OnInit {
   public productPrice: number;
   public productPhoto: string;
   public productDescription: string;
-  public productArray: [object];
+  public productArray = new Array();
 
   public geoCoder;
   public inputLatitude: number;
@@ -44,7 +44,6 @@ export class SiteRegiisterComponent implements OnInit {
     this.geoStep = true;
     this.generalStep = false;
     this.productStep = false;
-    this.productArray = [{}];
    }
 
 

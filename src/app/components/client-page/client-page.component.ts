@@ -22,6 +22,7 @@ export class ClientPageComponent implements OnInit {
   getListSites () {
     this.siteService.getSites()
     .subscribe((sites : SiteInterface) => (this.sites = sites));
+    console.log(this.sites);
   }
 
 }

@@ -1,3 +1,4 @@
+import { MapsApiService } from './../../services/MapApiService';
 import { SiteInterface } from './../../models/site-interface';
 import { SiteService } from './../../services/site.service';
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
@@ -48,7 +49,7 @@ export class SiteRegiisterComponent implements OnInit {
     this.productStep = false;
    }
 
-  ngOnInit() {
+    ngOnInit() {
     this.mapsAPILoader.load().then(
       () => {
         this.geoCoder = new google.maps.Geocoder();

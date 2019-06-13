@@ -32,7 +32,7 @@ export class SiteService {
   public internalOrder : internalOrderInterface = {
     total : 0,
     products : [null]
-  } 
+  }
 
   postSite(latitude: number, longitude: number, location: object, address: string, name: string,
            description: string, deliveryPersonnelQuantity: number, type: string[], rating: number,

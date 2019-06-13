@@ -52,7 +52,8 @@
                                           <div class="force-overflow"></div>
                                         </div>
                                         <ul class="list-group mb-3" style="height: 300px" id="CartList">
-                                            <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let product of this.siteService.selectedSite.products">
+                                            <li class="list-group-item d-flex justify-content-between lh-condensed" 
+                                            *ngFor="let product of this.siteService.selectedSite.products; index as i">
                                               
                                               <img src="{{product.photo}}" style="width: 50px; height:50px">
                                               
@@ -61,7 +62,7 @@
                                                   <span class="text-muted"> Price(CRC): {{product.price}}</span>
                                                 </div>
                                                 
-                                                <input class="form-control" type="number" name="quantity" min="0" style="width: 60px; height: 30px;" value="0">
+                                                <input class="form-control" type="number" name="quantity" min="0" style="width: 60px; height: 30px;" value="0" id="input{{i}}">
                                               </li>
                                         </ul>
                                         <ul class="list-group mb-3">
@@ -72,7 +73,9 @@
                    
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary">Add to Order</button>
+                      <form #formOrder="ngForm" (ngSubmit)="onAddOrder()">
+                    <button type="submit" class="btn btn-secondary">Add to Order</button>
+                    </form>
                   </div>
                 </div>
               </div>

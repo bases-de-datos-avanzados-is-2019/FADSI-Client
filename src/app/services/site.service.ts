@@ -1,4 +1,5 @@
 import { SiteInterface } from './../models/site-interface';
+import {internalOrderInterface} from './../models/internalOrder-Interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
@@ -28,6 +29,10 @@ export class SiteService {
     products: null,
     id: '',
   };
+  public internalOrder : internalOrderInterface = {
+    total : 0,
+    products : [null]
+  } 
 
   postSite(latitude: number, longitude: number, location: object, address: string, name: string,
            description: string, deliveryPersonnelQuantity: number, type: string[], rating: number,

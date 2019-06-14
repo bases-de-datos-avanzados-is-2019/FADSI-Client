@@ -51,4 +51,9 @@ export class SiteService {
     const urlApi = 'https://fadsi.herokuapp.com/api/sites';
     return this.http.get(urlApi);
   }
+
+  deleteSite(id: string) {
+    const urlApi = `https://fadsi.herokuapp.com/api/sites/${id}`;
+    return this.http.delete<SiteInterface>(urlApi, { headers: this.headers }).pipe(map(data => data));
+  }
 }

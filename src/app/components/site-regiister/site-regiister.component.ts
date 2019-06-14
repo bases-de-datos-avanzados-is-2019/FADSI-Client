@@ -169,8 +169,7 @@ export class SiteRegiisterComponent implements OnInit {
   }
 
   test() {
-    const result = this.mapApi.getSitesByRadius(2000, this.sites[0], this.sites);
-    console.log(result);
+    console.log(this.siteService.getSites());
   }
 }
 

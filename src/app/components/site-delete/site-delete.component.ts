@@ -1,3 +1,5 @@
+import { SiteInterface } from './../../models/site-interface';
+import { SiteService } from './../../services/site.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./site-delete.component.css']
 })
 export class SiteDeleteComponent implements OnInit {
-
-  constructor() { }
+  public sites: SiteInterface;
+  constructor(private siteService: SiteService) { }
 
   ngOnInit() {
+    this.getListSites();
+  }
+
+  getListSites(): void {
+    this.siteService.getSites().subscribe((sites: SiteInterface) => (this.sites = sites));
+  }
+
+  deleteSite(id: string): void {
+    if (confirm('Are you sure you want to delete this site?')) {
+      this.siteService.deleteSite(id).subscribe();
+    }
   }
 
 }

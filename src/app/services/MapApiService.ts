@@ -22,7 +22,7 @@ export class MapsApiService {
   getSitesByRadius(radius: number, mainSite: SiteInterface, siteList: any) {
     const result = new Array();
     siteList.forEach(element => {
-      if (mainSite.id !== siteList.id) {
+      if (mainSite.id !== element.id) {
         if (this.getDistance(mainSite.latitude, mainSite.longitude, element.latitude, element.longitude) <= radius) {
           result.push(element);
         }

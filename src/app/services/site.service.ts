@@ -34,7 +34,7 @@ export class SiteService {
     total : 0,
     products : [null]
   }
-  
+
   setInternalOrder(){
     const orderString = localStorage.getItem('currentOrder');
     if (!isNullOrUndefined(orderString)) {

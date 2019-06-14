@@ -9,6 +9,7 @@ import { RegisterComponent } from './components/user/register/register.component
 import { EmployeePageComponent } from './components/employee-page/employee-page.component';
 import { SiteDeleteComponent } from './components/site-delete/site-delete.component';
 import {CartComponent} from './components/cart/cart.component';
+import { EditSiteModalComponent } from './components/edit-site-modal/edit-site-modal.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'user/employee', component: EmployeePageComponent},
   {path: 'user/employee/addSite', component: SiteRegiisterComponent},
   {path: 'user/employee/deleteSite', component: SiteDeleteComponent},
-  {path: 'cart',component: CartComponent},
+  {path: 'user/employee/deleteSite/updateSiteModal', component: EditSiteModalComponent},
+  {path: 'cart', component: CartComponent},
   {path: '**', component: Page404Component}// Deber ir al final del array de rutas
 ];
 

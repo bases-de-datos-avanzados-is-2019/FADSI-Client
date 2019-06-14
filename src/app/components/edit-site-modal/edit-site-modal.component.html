@@ -1,0 +1,64 @@
+<div class="modal fade" id="editSiteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" (ngModelChange)="setValues()">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Site</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-site" #formSite="ngForm" (submit)="updateSite(formSite)">
+          <div class="form-group">
+            <label for="">Site Name</label>
+            <input type="text" id="siteName" name="siteName" class="form-control" [(ngModel)]="siteName" placeholder="Site Name">
+          </div>
+          <div class="form-group">
+            <label for="">Number of employees</label>
+            <input type="text" id="employeesNumber" name="employeesNumber" class="form-control" [(ngModel)]="numberEmployees" placeholder="Number of Employees">
+          </div>
+          <div class="form-group">
+            <label for="">Site Description</label>
+            <textarea id="siteDescription" name="siteDescription" cols="50" rows="4" class="form-control" [(ngModel)]="siteDescription"></textarea>
+          </div>
+          <label for="">Products</label>
+          <div class="col-5" style=" margin-top: 15px">
+            <div *ngFor="let product of this.productArray; index as i">
+             <div class="card_register">
+               <div class="card">
+                 <div class="card-body">
+                    <div class="form-group">
+                        <label for="">Product Name: </label>
+                        <input type="text" id="productName" name="productName" class="form-control" [(ngModel)]="productArray[i].name" placeholder="Product Name">
+                      </div>
+                      <div class="form-group">
+                        <label for="">Product Code: </label>
+                        <input type="text" id="productCode" name="productCode" class="form-control" [(ngModel)]="productArray[i].code" placeholder="Product Code">
+                      </div>
+                      <div class="form-group">
+                        <label for="">Product Price: </label>
+                        <input type="text" id="productPrice" name="productPrice" class="form-control" [(ngModel)]="productArray[i].price" placeholder="Product Price">
+                      </div>
+                      <div class="form-group">
+                        <label for="">Product Photo link: </label>
+                        <input type="text" id="productPhoto" name="productPhoto" class="form-control" [(ngModel)]="productArray[i].photo" placeholder="Product Photo link">
+                      </div>
+                      <div class="form-group">
+                        <label for="">Product Description</label>
+                        <textarea id="productDescription" name="productDescription" cols="50" rows="4" class="form-control" [(ngModel)]="productArray[i].description"></textarea>
+                      </div>
+                 </div>
+               </div>
+
+             </div>
+
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn btn-primary float-right">Update Site</button>
+        </form>
+
+    </div>
+  </div>
+</div>

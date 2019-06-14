@@ -25,4 +25,9 @@ export class SiteDeleteComponent implements OnInit {
     }
   }
 
+  setSiteforUpdate(site: SiteInterface) {
+    const siteString = JSON.stringify(site);
+    localStorage.setItem('siteforUpdate', siteString);
+  }
+
 }

@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit {
 
 
   onLogOut() {
+    localStorage.removeItem('currentOrder');
     this.authService.logoutUser().subscribe();
     this.router.navigate(['/']);
     this.onCheckUser();

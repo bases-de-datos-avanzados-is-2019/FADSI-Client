@@ -73,9 +73,9 @@
                    
                   </div>
                   <div class="modal-footer">
-                      <form #formOrder="ngForm" (ngSubmit)="onAddOrder()">
-                    <button type="submit" class="btn btn-secondary">Add to Order</button>
-                    </form>
+                    
+                    <button type="button" class="btn btn-secondary" (click)="onAddOrder()" data-dismiss="modal">Add to Order</button>
+                  
                   </div>
                 </div>
               </div>

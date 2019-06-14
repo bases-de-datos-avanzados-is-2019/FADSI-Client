@@ -79,8 +79,6 @@ export class ModalComponent implements OnInit {
 
     const orderString = JSON.stringify(this.siteService.internalOrder);
     localStorage.setItem('currentOrder',orderString);
-
-    location.reload();
     
   }
 

@@ -43,13 +43,15 @@ export class SiteRegiisterComponent implements OnInit {
 
   @ViewChild('search') public searchElement: ElementRef;
 
-  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private siteService: SiteService) {
+  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private siteService: SiteService,
+              private mapApi: MapsApiService) {
     this.geoStep = true;
     this.generalStep = false;
     this.productStep = false;
    }
 
     ngOnInit() {
+    this.getListSites();
     this.mapsAPILoader.load().then(
       () => {
         this.geoCoder = new google.maps.Geocoder();
@@ -152,21 +154,23 @@ export class SiteRegiisterComponent implements OnInit {
       lat: this.latitude,
       lng: this.longitude
     };
-    console.log(this.siteDescription);
     this.setGeographicStep();
     return this.siteService.postSite(this.latitude, this.longitude, this.location, this.address, this.siteName,
       this.siteDescription, this.numberEmployees, this.type, this.rating, this.image, this.telephoneNumber,
       this.openingHours, this.website, this.productArray).subscribe(data =>{
-        console.log(data);
         this.setGeographicStep();
       });
   }
 
-  async getListSites() {
-    await this.siteService.getSites().subscribe((sites: SiteInterface) => {
-       this.sites = sites;
-      });
+  getListSites() {
+    this.siteService.getSites().subscribe((sites: SiteInterface) => {
+      this.sites = sites;
+    });
+  }
 
+  test() {
+    const result = this.mapApi.getSitesByRadius(2000, this.sites[0], this.sites);
+    console.log(result);
   }
 }
 

@@ -7,30 +7,30 @@ import { } from 'googlemaps';
   providedIn: 'root'
 })
 export class MapsApiService {
-  private distance: number;
-  constructor(private mapsAPILoader: MapsAPILoader) { }
+  constructor() { }
 
-  getDistance(lat1: number, lon1: number, lat2: number, lon2: number){
-    this.mapsAPILoader.load().then(
-      () => {
-        const place1 = new google.maps.LatLng(lat1, lon1);
-        const place2 = new google.maps.LatLng(lat2, lon2);
-        this.distance = google.maps.geometry.spherical.computeDistanceBetween(place1, place2);
-      }
-    );
-    return this.distance;
+  getDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+    let distance: number;
+    const place1 = new google.maps.LatLng(lat1, lon1);
+    const place2 = new google.maps.LatLng(lat2, lon2);
+    distance = google.maps.geometry.spherical.computeDistanceBetween(place1, place2);
+    return distance;
   }
 
-  getSitesByRadius(radius: number, mainSite: SiteInterface, siteList: any): [SiteInterface] {
-    let result: [SiteInterface];
-    siteList.forEach((item) => {
-      if (mainSite.id !== item.id) {
-        console.log(this.getDistance(mainSite.latitude, mainSite.longitude, item.latitude, item.longitude));
-        if (this.getDistance(mainSite.latitude, mainSite.longitude, item.latitude, item.longitude) <= radius) {
-          result.push(item);
+
+
+  getSitesByRadius(radius: number, mainSite: SiteInterface, siteList: any) {
+    const result = new Array();
+    siteList.forEach(element => {
+      if (mainSite.id !== siteList.id) {
+        if (this.getDistance(mainSite.latitude, mainSite.longitude, element.latitude, element.longitude) <= radius) {
+          result.push(element);
         }
       }
     });
     return result;
+
+
   }
+
 }

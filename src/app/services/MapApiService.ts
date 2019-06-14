@@ -1,4 +1,3 @@
-import { MapsAPILoader } from '@agm/core';
 import { SiteInterface } from './../models/site-interface';
 import { Injectable } from '@angular/core';
 import { } from 'googlemaps';
@@ -10,6 +9,7 @@ export class MapsApiService {
   constructor() { }
 
   getDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+
     let distance: number;
     const place1 = new google.maps.LatLng(lat1, lon1);
     const place2 = new google.maps.LatLng(lat2, lon2);

@@ -67,6 +67,8 @@ export class ModalComponent implements OnInit {
 
     this.index = 0;
     console.log(this.siteService.internalOrder);
+    
+    
   }
 
 }

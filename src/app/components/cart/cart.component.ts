@@ -3,6 +3,7 @@ import {SiteService} from '../../services/site.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import {internalOrderInterface} from '../../models/internalOrder-Interface';
+import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-cart',
@@ -19,6 +20,16 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.internalOrder = this.siteService.internalOrder;
+  }
+
+  deleteElement (index : string, price : string, quantity : string){
+    console.log(index);
+    let i = parseInt(index);
+    let p = parseInt(price);
+    let q = parseInt(quantity);
+    i = i+1;
+    this.internalOrder.total = this.internalOrder.total - (p*q);
+    this.siteService.internalOrder.products.splice(i,1);
   }
   
 

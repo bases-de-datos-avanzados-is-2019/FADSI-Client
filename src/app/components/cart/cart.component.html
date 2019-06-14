@@ -6,8 +6,8 @@
     <div class="col-12">
       <h1>Your Cart</h1>
       <div>
-        <ul>
-          <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let product of internalOrder.products | slice:1">
+        <ul  id="CartList" style="height: 600px">
+          <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let product of internalOrder.products | slice:1; index as i">
                 <div>
                   <img src="{{product.photo}}" style="width: 50px; height:50px">
                   <h6 class="my-0">{{product.name}}</h6>
@@ -21,18 +21,32 @@
 
                 <div>
                    
-                    <h3 style="color: blue"> Price (CRC){{product.price}}</h3>
+                    
                 </div>
 
                 <div>
-                    <span class="badge badge-pill badge-danger float-right">
+                    <span class="badge badge-pill badge-danger float-right" (click)="deleteElement(i,product.price,product.quantity)">
                       <i class="fa fa-fw fa-times" style="color:white">
-                      </i></span>
+                      </i>
+                    </span>
+
+                    <h5 class="float-bottom" style="color: blue; margin-top: 10px"> Price (CRC){{product.price}}</h5>
                      
                 </div>
                   
           </li>
         </ul>
+      </div>
+      <div>
+          <ul>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                       <h3>TOTAL(CRC):</h3>
+                        
+                    </div>
+                    <h3 class="float-right" style="color: blue">{{internalOrder.total}}</h3>
+              </li>
+            </ul>
       </div>
         <form #formOrder="ngForm" (ngSubmit)="onSubmit()">
           <button type="submit" class="btn btn-secondary btn-lg float-right"> Place Order</button>

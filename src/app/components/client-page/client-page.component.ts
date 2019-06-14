@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SiteService} from '../../services/site.service'
 import {SiteInterface} from '../../models/site-interface'
+import {MapsApiService} from '../../services/MapApiService';
 @Component({
   selector: 'app-client-page',
   templateUrl: './client-page.component.html',
@@ -8,7 +9,7 @@ import {SiteInterface} from '../../models/site-interface'
 })
 export class ClientPageComponent implements OnInit {
 
-  constructor(private siteService : SiteService) { }
+  constructor(private siteService : SiteService, private maps : MapsApiService) { }
   private sites : SiteInterface;
 
   ngOnInit() {
@@ -17,6 +18,8 @@ export class ClientPageComponent implements OnInit {
 
   onViewSite (site : SiteInterface) : void {
     this.siteService.selectedSite = Object.assign({},site);
+    let response = this.maps.getSitesByRadius(5000,this.siteService.selectedSite,this.sites);
+    console.log(response);
   }
 
   getListSites () {

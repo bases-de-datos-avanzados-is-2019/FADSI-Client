@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import {internalOrderInterface} from '../../models/internalOrder-Interface';
 import { timingSafeEqual } from 'crypto';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-cart',
@@ -19,7 +20,14 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.internalOrder = this.siteService.internalOrder;
+    const orderString = localStorage.getItem('currentOrder');
+    if (!isNullOrUndefined(orderString)) {
+      const order: internalOrderInterface = JSON.parse(orderString);
+      this.internalOrder = order;
+    } else {
+      this.internalOrder = this.siteService.internalOrder;
+    }
+    
   }
 
   deleteElement (index : string, price : string, quantity : string){
@@ -29,7 +37,10 @@ export class CartComponent implements OnInit {
     let q = parseInt(quantity);
     i = i+1;
     this.internalOrder.total = this.internalOrder.total - (p*q);
-    this.siteService.internalOrder.products.splice(i,1);
+    this.internalOrder.products.splice(i,1);
+    const orderS = JSON.stringify(this.internalOrder);
+    localStorage.setItem('currentOrder',orderS);
+    
   }
   
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {SiteService} from '../../services/site.service';
 import {SiteInterface} from '../../models/site-interface';
 import {ProductInterface} from '../../models/product-interface';
+import {internalOrderInterface} from '../../models/internalOrder-Interface';
 
 
 import {NgForm, FormsModule} from '@angular/forms';
@@ -27,7 +28,15 @@ export class ModalComponent implements OnInit {
     quantity : ""
   }
 
+  public currentOrder : internalOrderInterface;
+
   ngOnInit() {
+    this.siteService.setInternalOrder();
+  }
+
+  getOrder() {
+    const orderString = localStorage.getItem('currentOrder');
+    this.currentOrder = JSON.parse(orderString);
   }
 
   onAddOrder () : void {
@@ -67,7 +76,11 @@ export class ModalComponent implements OnInit {
 
     this.index = 0;
     console.log(this.siteService.internalOrder);
-    
+
+    const orderString = JSON.stringify(this.siteService.internalOrder);
+    localStorage.setItem('currentOrder',orderString);
+
+    location.reload();
     
   }
 

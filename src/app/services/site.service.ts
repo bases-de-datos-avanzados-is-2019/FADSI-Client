@@ -3,6 +3,7 @@ import {internalOrderInterface} from './../models/internalOrder-Interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { isNullOrUndefined } from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,20 @@ export class SiteService {
     total : 0,
     products : [null]
   }
+  
+  setInternalOrder(){
+    const orderString = localStorage.getItem('currentOrder');
+    if (!isNullOrUndefined(orderString)) {
+      const order: internalOrderInterface = JSON.parse(orderString);
+      this.internalOrder = order;
+    } else {
+      let temp :  internalOrderInterface = {
+        total : 0,
+        products : [null]
+      }
+      this.internalOrder = temp;
+    }
+  }
 
   postSite(latitude: number, longitude: number, location: object, address: string, name: string,
            description: string, deliveryPersonnelQuantity: number, type: string[], rating: number,
@@ -45,6 +60,10 @@ export class SiteService {
        image, telephoneNumber, openingHours, website, products},
       {headers: this.headers})
       .pipe(map(data => data));
+  }
+
+  postOrder(total: number, products: object[], userID : string){
+
   }
 
   getSites() {

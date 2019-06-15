@@ -16,8 +16,11 @@ export class CartComponent implements OnInit {
   constructor(private siteService : SiteService) { }
   private internalOrder : internalOrderInterface = {
     total : 0,
-    products : null
+    products : null,
+    stores : null,
+    clientID : ''
   }
+  private storeArray = [];
 
   ngOnInit() {
     const orderString = localStorage.getItem('currentOrder');
@@ -45,7 +48,36 @@ export class CartComponent implements OnInit {
   
 
   onSubmit(){
+    
     console.log("hello");
+    let products = this.internalOrder.products;
+
+    var first = products.findIndex( 
+      function(el) { 
+        return (el == null);
+      }
+    );
+
+    products.splice(first,1);
+
+    products.forEach(element => {
+      let product = JSON.stringify(element);
+      let productJSON = JSON.parse(product);
+      let storeID = productJSON.storeID;
+
+      if(!(this.storeArray.filter(store => (store == storeID)))){
+          this.storeArray.push(storeID);
+      }
+
+    });
+
+    this.internalOrder.stores = this.storeArray;
+    let clients = localStorage.getItem('currentUser');
+    let clientJSON = JSON.parse(clients);
+
+    this.internalOrder.clientID = clientJSON.id;
+
+    console.log(this.internalOrder);
   }
 
 }

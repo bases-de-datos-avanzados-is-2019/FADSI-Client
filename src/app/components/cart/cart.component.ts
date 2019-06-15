@@ -38,7 +38,7 @@ export class CartComponent implements OnInit {
     let clientJSON = JSON.parse(clients);
 
     let ids = clientJSON.id;
-    this.order.getOrderById(ids)
+    this.order.getOrdersByClientId(ids)
     .subscribe((orders : internalOrderInterface) => (this.testOrders = orders));
     console.log(this.testOrders);
     

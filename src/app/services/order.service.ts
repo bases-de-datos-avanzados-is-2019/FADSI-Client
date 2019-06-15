@@ -1,3 +1,4 @@
+import { OrderInterface } from './../models/order-interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { internalOrderInterface } from '../models/internalOrder-Interface';
@@ -17,13 +18,17 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  postOrder( specifics : string, total: number, products: object[], userID: string, stores: any[]){
+  postOrder( extraDetail: string, totalSum: number, items: object[], idCliente: string, idSitios: any[]){
     const urlApi = 'https://fadsi.herokuapp.com/api/orders';
     console.log('Hello from the post (. ) (. )');
-    console.log(products);
-    return this.http.post<internalOrderInterface>(
+    console.log(items);
+    return this.http.post<OrderInterface>(
       urlApi,
-      {userID, stores, products, total, specifics},
+      {idCliente: idCliente,
+        idSitios: idSitios,
+        items: items,
+        extraDetail: extraDetail,
+        totalSum: totalSum},
       {headers: this.headers})
       .pipe(map(data => data));
   }
@@ -33,12 +38,12 @@ export class OrderService {
     return this.http.get(urlApi);
   }
 
-  getOrderById(id: String){
+  getOrderById(id: string){
     const urlApi = `https://fadsi.herokuapp.com/api/orders/${id}`;
     return (this.order = this.http.get(urlApi));
   }
 
-  getOrdersByClientId(clientId: String){
+  getOrdersByClientId(clientId: string){
     const urlApi = `https://fadsi.herokuapp.com/api/orders?filter=%7B%22where%22%3A%7B%22idCliente%22%3A%7B%22like%22%3A%22${clientId}%22%7D%7D%7D`;
     return (this.orders = this.http.get(urlApi));
   }

@@ -1,3 +1,164 @@
 <section class="container container-fluid" style="margin-top:105px">
-  <p>Works!</p>
+  <button class="btn btn-secondary float-right" style="margin-top: 5px; margin-bottom:10px" (click)="getETL()">GET ETL</button>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Top 5</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Stores</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Orders</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="common-tab" data-toggle="tab" href="#common" role="tab" aria-controls="common" aria-selected="false">Stores in Common</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="optimal-tab" data-toggle="tab" href="#optimal" role="tab" aria-controls="optimal" aria-selected="false">Optimal Route</a>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="myTabContent">
+
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div class="row" style="margin-top: 45px">
+        <div class="col-4">
+          <h3 class="card-title" style="margin-bottom: 20px">Top 5 Stores</h3>
+        </div>
+        <div class="col-8">
+          <div class="row" style="margin-bottom: 15px">
+            <div class="col-4">
+              <h3>Store</h3>
+            </div>
+            <div class="col-4"></div>
+            <div class="col-4">
+              <h3 class="float-right">Total Orders</h3>
+            </div>
+            
+          </div>
+            <ul class="list-group mb-3" style="height: 500px" id="CartList">
+                <li class="list-group-item d-flex justify-content-between lh-condensed"
+                *ngFor="let site of this.top5.result">                 
+                  <div>
+                      <h5 class="my-0">{{site.name}}</h5>
+                      <span class="text-muted float-left" >{{site.siteID}}</span>
+                  </div>
+                  <div class="row">
+                    
+                  </div>
+                    
+
+                    <h6 class="float-right">{{site.totalOrders}}</h6>
+                  </li>
+            </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="row" style="margin-top: 45px">
+            <div class="col-4">
+              <form #formRegister="ngForm" (ngSubmit)="getSitesByID()">
+              <h3 class="card-title" style="margin-bottom: 20px"> Stores by Client</h3>
+              <input class="form-control" type="text" placeholder="Client ID"  name="button" id="button" 
+              [(ngModel)]="userID" required>
+              <button class="btn btn-secondary float-left" style="margin-top:10px" type="submit">Search</button>
+            </form>
+            </div>
+            <div class="col-8">
+                <div class="row" style="margin-bottom: 15px">
+                  <div class="col-4">
+                    <h3>Store</h3>
+                  </div>
+                  <div class="col-4"></div>
+                  <div class="col-4">
+                    <h3 class="float-right"></h3>
+                  </div>
+                  
+                </div>
+                  <ul class="list-group mb-3" style="height: 500px" id="CartList">
+                      <li class="list-group-item d-flex justify-content-between lh-condensed"
+                      *ngFor="let store of this.stores.result">                 
+                        <div>
+                            <h5 class="my-0">{{store.name}}</h5>
+                            <span class="text-muted float-left" >{{store.siteID}}</span>
+                        </div>
+                        <div class="row">
+                          
+                        </div>
+
+                        </li>
+                  </ul>
+              </div>
+          </div>
+    </div>
+
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <div class="row" style="margin-top: 45px">
+            <div class="col-4">
+              <form #formOrders="ngForm" (ngSubmit)="getOrderByClientID()">
+              <h3 class="card-title" style="margin-bottom: 20px"> Client Order History</h3>
+              <input class="form-control" type="text" placeholder="Client ID"  name="order" id="order" 
+              [(ngModel)]="userID2" required>
+              <button class="btn btn-secondary float-left" style="margin-top:10px" type="submit">Search</button>
+              </form>
+            </div>
+            <div class="col-8">
+                <div class="row" style="margin-bottom: 15px">
+                  <div class="col-4">
+                    <h3>Order ID</h3>
+                  </div>
+                  <div class="col-4"></div>
+                  <div class="col-4">
+                      <h3 class="float-right">Total Cost</h3>
+                  </div>
+                  
+                </div>
+                  <ul class="list-group mb-3" style="height: 500px" id="CartList">
+                      <li class="list-group-item d-flex justify-content-between lh-condensed"
+                      *ngFor="let order of this.orders.result">                 
+                        <div>
+                            <h5 class="my-0">{{order.orderID}}</h5>
+                            
+                        </div>
+                        <div class="row">
+                          
+                        </div>
+                          <h6 class="float-right">{{order.totalSum}}</h6>
+                        </li>
+                  </ul>
+              </div>
+          </div>
+    </div>
+
+    <div class="tab-pane fade" id="common" role="tabpanel" aria-labelledby="common-tab">
+      <div class="row" style="margin-top: 45px">
+        <div class="col-4">
+          <h3 class="card-title" style="margin-bottom: 20px"> Stores in common with other clients</h3>
+          <input class="form-control" type="text" placeholder="Client ID">
+          <button class="btn btn-secondary float-left" style="margin-top:10px">Search</button>
+        </div>
+        <div class="col-8 text-center">
+          <p>adios </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="optimal" role="tabpanel" aria-labelledby="optimal-tab">
+        <div class="row" style="margin-top: 45px">
+          <div class="col-4">
+            <h3 class="card-title" style="margin-bottom: 20px"> Optimal Route</h3>
+            <input class="form-control" type="text" placeholder="Client ID">
+            <p style="visibility: hidden"></p>
+            <input class="form-control" type="text" placeholder="Store ID">
+
+            <button class="btn btn-secondary float-left" style="margin-top:10px">Search</button>
+          </div>
+          <div class="col-8 text-center">
+            <p>adios </p>
+          </div>
+        </div>
+      </div>
+    
+  </div>
 </section>

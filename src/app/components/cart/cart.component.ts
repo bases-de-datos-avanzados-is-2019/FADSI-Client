@@ -64,8 +64,9 @@ export class CartComponent implements OnInit {
       let product = JSON.stringify(element);
       let productJSON = JSON.parse(product);
       let storeID = productJSON.storeID;
-
-      if(!(this.storeArray.filter(store => (store == storeID)))){
+      console.log(storeID);
+      console.log();
+      if(this.storeArray.filter(store => (store == storeID)) === undefined || this.storeArray.filter(store => (store == storeID)).length == 0){
           this.storeArray.push(storeID);
       }
 
@@ -78,6 +79,22 @@ export class CartComponent implements OnInit {
     this.internalOrder.clientID = clientJSON.id;
 
     console.log(this.internalOrder);
+
+    let tempOrder : internalOrderInterface = {
+      total : 0,
+      products : [null]
+    };
+
+    this.siteService.internalOrder = tempOrder;
+    const orderS = JSON.stringify(tempOrder);
+    localStorage.setItem('currentOrder',orderS);
+
+   
+
+  }
+
+  onModalClick() {
+    window.history.back();
   }
 
 }

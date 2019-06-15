@@ -30,8 +30,14 @@
                 <i class="fa fa-fw fa-pencil" style="color:white"></i>
                 Edit Site</a>
         </li>
+
+        <li class="nav-item" *ngIf='isEmployee'>
+            <a class="nav-link" routerLink="/user/employee/reports">
+                <i class="fa fa-fw fa-sitemap" style="color:white"></i>
+                Reports</a>
+        </li>
         <li class="nav-item" *ngIf='isClient'>
-            <a class="nav-link" routerLink="/cart">
+            <a class="nav-link" routerLink="/user/client/cart">
                 <i class="fa fa-fw fa-shopping-cart" style="color:white"></i>
                 Cart</a>
         </li>

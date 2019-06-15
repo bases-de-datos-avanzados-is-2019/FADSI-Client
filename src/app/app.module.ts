@@ -24,6 +24,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { ModalComponent } from './components/modal/modal.component';
 import { CartComponent } from './components/cart/cart.component';
 import { EditSiteModalComponent } from './components/edit-site-modal/edit-site-modal.component';
+import { EtlReportsComponent } from './components/etl-reports/etl-reports.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { EditSiteModalComponent } from './components/edit-site-modal/edit-site-m
     SiteDeleteComponent,
     ModalComponent,
     CartComponent,
-    EditSiteModalComponent
+    EditSiteModalComponent,
+    EtlReportsComponent
   ],
   imports: [
     BrowserModule,

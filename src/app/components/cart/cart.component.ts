@@ -18,7 +18,8 @@ export class CartComponent implements OnInit {
     total : 0,
     products : null,
     stores : null,
-    clientID : ''
+    clientID : '',
+    specifics : ''
   }
   private storeArray = [];
 
@@ -77,6 +78,7 @@ export class CartComponent implements OnInit {
     let clientJSON = JSON.parse(clients);
 
     this.internalOrder.clientID = clientJSON.id;
+    this.internalOrder.specifics = 'hola, le meti un detalle';
 
     console.log(this.internalOrder);
 

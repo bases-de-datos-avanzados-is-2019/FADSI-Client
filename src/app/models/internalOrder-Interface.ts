@@ -5,5 +5,6 @@ export interface internalOrderInterface {
     products? : [Object];
     clientID? : string;
     stores? : any[];
+    specifics? : string;
 
 }

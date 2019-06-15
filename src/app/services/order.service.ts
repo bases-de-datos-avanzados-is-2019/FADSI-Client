@@ -16,11 +16,13 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  postOrder(total: number, products: object[], userID: string, stores: any[]){
+  postOrder( specifics : string, total: number, products: object[], userID: string, stores: any[]){
     const urlApi = 'https://fadsi.herokuapp.com/api/orders';
+    console.log('Hello from the post (. ) (. )');
+    console.log(products);
     return this.http.post<internalOrderInterface>(
       urlApi,
-      {userID, stores, products, total},
+      {userID, stores, products, total, specifics},
       {headers: this.headers})
       .pipe(map(data => data));
   }

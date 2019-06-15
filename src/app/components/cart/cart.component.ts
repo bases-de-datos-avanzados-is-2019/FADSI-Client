@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import {internalOrderInterface} from '../../models/internalOrder-Interface';
 import { timingSafeEqual } from 'crypto';
 import { isNullOrUndefined } from 'util';
+import {OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +14,7 @@ import { isNullOrUndefined } from 'util';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private siteService : SiteService) { }
+  constructor(private siteService : SiteService, private order : OrderService) { }
   private internalOrder : internalOrderInterface = {
     total : 0,
     products : null,
@@ -21,6 +22,7 @@ export class CartComponent implements OnInit {
     clientID : '',
     specifics : ''
   }
+  private testOrders : internalOrderInterface;
   private storeArray = [];
 
   ngOnInit() {
@@ -31,6 +33,14 @@ export class CartComponent implements OnInit {
     } else {
       this.internalOrder = this.siteService.internalOrder;
     }
+
+    let clients = localStorage.getItem('currentUser');
+    let clientJSON = JSON.parse(clients);
+
+    let ids = clientJSON.id;
+    this.order.getOrderById(ids)
+    .subscribe((orders : internalOrderInterface) => (this.testOrders = orders));
+    console.log(this.testOrders);
     
   }
 
@@ -81,6 +91,8 @@ export class CartComponent implements OnInit {
     this.internalOrder.specifics = 'hola, le meti un detalle';
 
     console.log(this.internalOrder);
+    this.post();
+    console.log('posted the order succesfully');
 
     let tempOrder : internalOrderInterface = {
       total : 0,
@@ -93,6 +105,16 @@ export class CartComponent implements OnInit {
 
    
 
+  }
+
+  post(){
+    let id = this.internalOrder.clientID;
+    let prod = this.internalOrder.products;
+    let stores = this.internalOrder.stores;
+    let specs = this.internalOrder.specifics;
+    let tot = this.internalOrder.total;
+
+    this.order.postOrder(specs,tot,prod,id,stores);
   }
 
   onModalClick() {

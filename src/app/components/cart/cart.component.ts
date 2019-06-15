@@ -38,10 +38,11 @@ export class CartComponent implements OnInit {
     let clientJSON = JSON.parse(clients);
 
     let ids = clientJSON.id;
-    this.order.getOrderById(ids)
+    this.order.getOrdersByClientId(ids)
     .subscribe((orders : internalOrderInterface) => (this.testOrders = orders));
     console.log(this.testOrders);
-    
+
+
   }
 
   deleteElement (index : string, price : string, quantity : string){
@@ -54,17 +55,17 @@ export class CartComponent implements OnInit {
     this.internalOrder.products.splice(i,1);
     const orderS = JSON.stringify(this.internalOrder);
     localStorage.setItem('currentOrder',orderS);
-    
+
   }
-  
+
 
   onSubmit(){
-    
+
     console.log("hello");
     let products = this.internalOrder.products;
 
-    var first = products.findIndex( 
-      function(el) { 
+    var first = products.findIndex(
+      function(el) {
         return (el == null);
       }
     );
@@ -103,7 +104,7 @@ export class CartComponent implements OnInit {
     const orderS = JSON.stringify(tempOrder);
     localStorage.setItem('currentOrder',orderS);
 
-   
+
 
   }
 
@@ -114,7 +115,7 @@ export class CartComponent implements OnInit {
     let specs = this.internalOrder.specifics;
     let tot = this.internalOrder.total;
 
-    this.order.postOrder(specs,tot,prod,id,stores);
+    this.order.postOrder(specs, tot, prod, id, stores).subscribe(data => console.log(data));
   }
 
   onModalClick() {

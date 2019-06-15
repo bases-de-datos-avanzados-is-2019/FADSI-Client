@@ -20,9 +20,10 @@ export class SiteDeleteComponent implements OnInit {
   }
 
   deleteSite(id: string): void {
-    if (confirm('Are you sure you want to delete this site?')) {
+    /*if (confirm('Are you sure you want to delete this site?')) {
       this.siteService.deleteSite(id).subscribe();
-    }
+    }*/
+    this.siteService.deleteSite(id).subscribe();
   }
 
   setSiteforUpdate(site: SiteInterface) {

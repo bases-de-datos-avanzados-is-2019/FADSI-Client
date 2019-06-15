@@ -40,7 +40,7 @@ export class CartComponent implements OnInit {
 
     let ids = clientJSON.id;
     this.order.getOrdersByClientId(ids)
-    .subscribe((orders : internalOrderInterface) => (this.testOrders = orders));
+    .subscribe((orders: internalOrderInterface) => (this.testOrders = orders));
     console.log(this.testOrders);
 
 

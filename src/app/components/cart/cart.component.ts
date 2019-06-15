@@ -1,3 +1,4 @@
+import { OrderInterface } from './../../models/order-interface';
 import { Component, OnInit } from '@angular/core';
 import {SiteService} from '../../services/site.service';
 import { Location } from '@angular/common';
@@ -22,7 +23,7 @@ export class CartComponent implements OnInit {
     clientID : '',
     specifics : ''
   }
-  private testOrders : internalOrderInterface;
+  public testOrders;
   private storeArray = [];
 
   ngOnInit() {

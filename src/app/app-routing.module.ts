@@ -10,6 +10,7 @@ import { EmployeePageComponent } from './components/employee-page/employee-page.
 import { SiteDeleteComponent } from './components/site-delete/site-delete.component';
 import {CartComponent} from './components/cart/cart.component';
 import { EditSiteModalComponent } from './components/edit-site-modal/edit-site-modal.component';
+import {EtlReportsComponent} from './components/etl-reports/etl-reports.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: 'user/employee/addSite', component: SiteRegiisterComponent},
   {path: 'user/employee/deleteSite', component: SiteDeleteComponent},
   {path: 'user/employee/deleteSite/updateSiteModal', component: EditSiteModalComponent},
-  {path: 'cart', component: CartComponent},
+  {path: 'user/employee/reports', component: EtlReportsComponent},
+  {path: 'user/client/cart', component: CartComponent},
   {path: '**', component: Page404Component}// Deber ir al final del array de rutas
 ];
 

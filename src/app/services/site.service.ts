@@ -30,6 +30,25 @@ export class SiteService {
     products: null,
     id: '',
   };
+
+  public siteUpdate: SiteInterface = {
+    latitude: 0,
+    longitude: 0,
+    location: null,
+    address: '',
+    name: '',
+    description: '',
+    deliveryPersonnelQuantity: 0,
+    type: null,
+    rating: 0,
+    image: '',
+    telephoneNumber: '',
+    openingHours: null,
+    website: '',
+    products: null,
+    id: '',
+  }
+
   public internalOrder : internalOrderInterface = {
     total : 0,
     products : [null]
@@ -75,4 +94,11 @@ export class SiteService {
     const urlApi = `https://fadsi.herokuapp.com/api/sites/${id}`;
     return this.http.delete<SiteInterface>(urlApi, { headers: this.headers }).pipe(map(data => data));
   }
+
+  updateSite(site) {
+    const urlApi = `https://fadsi.herokuapp.com/api/sites/${site.id}`;
+    return this.http.put<SiteInterface>(urlApi, site, {headers: this.headers})
+    .pipe(map(data => data));
+  }
+
 }

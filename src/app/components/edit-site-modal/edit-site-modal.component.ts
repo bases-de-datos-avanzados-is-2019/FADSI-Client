@@ -22,23 +22,16 @@ export class EditSiteModalComponent implements OnInit {
   public productDescription: string;
   public productArray = new Array();
 
-  constructor(private siteService: SiteService, private location: Location) {
+  constructor(public siteService: SiteService, private location: Location) {
   }
 
   ngOnInit() {
-   this.setValues();
   }
 
-  setValues(){
-    const siteforUpdate: SiteInterface = JSON.parse(localStorage.getItem('siteforUpdate'));
-    this.siteName = siteforUpdate.name;
-    this.numberEmployees = siteforUpdate.deliveryPersonnelQuantity;
-    this.siteDescription = siteforUpdate.description;
-    this.productArray = siteforUpdate.products;
-  }
 
-  updateSite() {
-
+  updateSite(siteForm: NgForm) {
+    console.log(this.siteService.siteUpdate);
+    //this.siteService.updateSite(siteForm.value).subscribe(site => location.reload());
   }
 
 }

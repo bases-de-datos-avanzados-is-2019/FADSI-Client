@@ -30,4 +30,8 @@ export class SiteDeleteComponent implements OnInit {
     localStorage.setItem('siteforUpdate', siteString);
   }
 
+  preUpdateSite(site: SiteInterface) {
+    this.siteService.siteUpdate = Object.assign({}, site);
+  }
+
 }

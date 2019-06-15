@@ -11,41 +11,41 @@
         <form class="form-site" #formSite="ngForm" (submit)="updateSite(formSite)">
           <div class="form-group">
             <label for="">Site Name</label>
-            <input type="text" id="siteName" name="siteName" class="form-control" [(ngModel)]="siteName" placeholder="Site Name">
+            <input type="text" id="siteName" name="siteName" class="form-control" [(ngModel)]="this.siteService.siteUpdate.name" placeholder="Site Name">
           </div>
           <div class="form-group">
             <label for="">Number of employees</label>
-            <input type="text" id="employeesNumber" name="employeesNumber" class="form-control" [(ngModel)]="numberEmployees" placeholder="Number of Employees">
+            <input type="text" id="employeesNumber" name="employeesNumber" class="form-control" [(ngModel)]="this.siteService.siteUpdate.deliveryPersonnelQuantity" placeholder="Number of Employees">
           </div>
           <div class="form-group">
             <label for="">Site Description</label>
-            <textarea id="siteDescription" name="siteDescription" cols="50" rows="4" class="form-control" [(ngModel)]="siteDescription"></textarea>
+            <textarea id="siteDescription" name="siteDescription" cols="50" rows="4" class="form-control" [(ngModel)]="this.siteService.siteUpdate.description"></textarea>
           </div>
           <label for="">Products</label>
           <div class="col-5" style=" margin-top: 15px">
-            <div *ngFor="let product of this.productArray; index as i">
+            <div *ngFor="let product of this.siteService.siteUpdate.products; index as i">
              <div class="card_register">
                <div class="card">
                  <div class="card-body">
                     <div class="form-group">
                         <label for="">Product Name: </label>
-                        <input type="text" id="productName" name="productName" class="form-control" [(ngModel)]="productArray[i].name" placeholder="Product Name">
+                        <input type="text" id="productName" name="productName" class="form-control" [(ngModel)]="this.siteService.siteUpdate.products[i].name" placeholder="Product Name">
                       </div>
                       <div class="form-group">
                         <label for="">Product Code: </label>
-                        <input type="text" id="productCode" name="productCode" class="form-control" [(ngModel)]="productArray[i].code" placeholder="Product Code">
+                        <input type="text" id="productCode" name="productCode" class="form-control" [(ngModel)]="product.code" placeholder="Product Code">
                       </div>
                       <div class="form-group">
                         <label for="">Product Price: </label>
-                        <input type="text" id="productPrice" name="productPrice" class="form-control" [(ngModel)]="productArray[i].price" placeholder="Product Price">
+                        <input type="text" id="productPrice" name="productPrice" class="form-control" [(ngModel)]="product.price" placeholder="Product Price">
                       </div>
                       <div class="form-group">
                         <label for="">Product Photo link: </label>
-                        <input type="text" id="productPhoto" name="productPhoto" class="form-control" [(ngModel)]="productArray[i].photo" placeholder="Product Photo link">
+                        <input type="text" id="productPhoto" name="productPhoto" class="form-control" [(ngModel)]="product.photo" placeholder="Product Photo link">
                       </div>
                       <div class="form-group">
                         <label for="">Product Description</label>
-                        <textarea id="productDescription" name="productDescription" cols="50" rows="4" class="form-control" [(ngModel)]="productArray[i].description"></textarea>
+                        <textarea id="productDescription" name="productDescription" cols="50" rows="4" class="form-control" [(ngModel)]="product.description"></textarea>
                       </div>
                  </div>
                </div>

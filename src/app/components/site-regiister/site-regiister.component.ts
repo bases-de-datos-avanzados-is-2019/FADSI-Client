@@ -4,6 +4,9 @@ import { SiteService } from './../../services/site.service';
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
 import { } from 'googlemaps';
+import { OrderService } from 'src/app/services/order.service';
+import { internalOrderInterface } from 'src/app/models/internalOrder-Interface';
+import { Neo4jService } from 'src/app/services/neo4j.service';
 
 @Component({
   selector: 'app-site-regiister',
@@ -44,7 +47,7 @@ export class SiteRegiisterComponent implements OnInit {
   @ViewChild('search') public searchElement: ElementRef;
 
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private siteService: SiteService,
-              private mapApi: MapsApiService) {
+              private mapApi: MapsApiService, private orderService: OrderService) {
     this.geoStep = true;
     this.generalStep = false;
     this.productStep = false;
@@ -169,8 +172,7 @@ export class SiteRegiisterComponent implements OnInit {
   }
 
   test() {
-    console.log(this.sites);
-    console.log(this.mapApi.getSitesByRadius(10000, this.sites[0], this.sites));
+    this.orderService.getOrder().subscribe(data => (console.log(data)));
   }
 }
 

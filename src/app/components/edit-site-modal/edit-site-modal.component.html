@@ -1,4 +1,4 @@
-<div class="modal fade" id="editSiteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" (ngModelChange)="setValues()">
+<div class="modal fade" id="editSiteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form class="form-site" #formSite="ngForm" (submit)="updateSite(formSite)">
+        <form class="form-site" #formSite="ngForm" (submit)="updateSite()">
           <div class="form-group">
             <label for="">Site Name</label>
             <input type="text" id="siteName" name="siteName" class="form-control" [(ngModel)]="this.siteService.siteUpdate.name" placeholder="Site Name">
@@ -23,13 +23,13 @@
           </div>
           <label for="">Products</label>
           <div class="col-5" style=" margin-top: 15px">
-            <div *ngFor="let product of this.siteService.siteUpdate.products; index as i">
+            <div *ngFor="let product of this.siteService.siteUpdate.products; index as i;">
              <div class="card_register">
                <div class="card">
                  <div class="card-body">
                     <div class="form-group">
                         <label for="">Product Name: </label>
-                        <input type="text" id="productName" name="productName" class="form-control" [(ngModel)]="this.siteService.siteUpdate.products[i].name" placeholder="Product Name">
+                        <input type="text" id="productName" name="productName" class="form-control" [(ngModel)]="product.name" placeholder="Product Name">
                       </div>
                       <div class="form-group">
                         <label for="">Product Code: </label>

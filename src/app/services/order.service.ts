@@ -13,6 +13,7 @@ export class OrderService {
   });
 
   order: Observable<any>;
+  orders: Observable<any>;
 
   constructor(private http: HttpClient) { }
 
@@ -33,6 +34,11 @@ export class OrderService {
   getOrderById(id: String){
     const urlApi = `https://fadsi.herokuapp.com/api/orders/${id}`;
     return (this.order = this.http.get(urlApi));
+  }
+
+  getOrdersByClientId(clientId: String){
+    const urlApi = `https://fadsi.herokuapp.com/api/orders?filter=%7B%22where%22%3A%7B%22idCliente%22%3A%7B%22like%22%3A%22${clientId}%22%7D%7D%7D`;
+    return (this.orders = this.http.get(urlApi));
   }
 
 

@@ -29,9 +29,8 @@ export class EditSiteModalComponent implements OnInit {
   }
 
 
-  updateSite(siteForm: NgForm) {
-    console.log(this.siteService.siteUpdate);
-    //this.siteService.updateSite(siteForm.value).subscribe(site => location.reload());
+  updateSite() {
+    this.siteService.updateSite(this.siteService.siteUpdate).subscribe(site => location.reload());
   }
 
 }

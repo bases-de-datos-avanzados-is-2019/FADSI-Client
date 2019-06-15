@@ -81,9 +81,7 @@ export class SiteService {
       .pipe(map(data => data));
   }
 
-  postOrder(total: number, products: object[], userID : string){
 
-  }
 
   getSites() {
     const urlApi = 'https://fadsi.herokuapp.com/api/sites';

@@ -18,9 +18,9 @@ export class RouteService {
     return this.http.post<RouteInterface>(
       urlApi,
       {
-       idCliente,
-       idMainSite,
-       possibleSites
+       idCliente: idCliente,
+       idMainSite: idMainSite,
+       possibleSites: possibleSites
       },
       {headers: this.headers})
       .pipe(map(data => data));

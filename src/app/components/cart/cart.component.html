@@ -6,7 +6,7 @@
     <div class="col-12">
       <h1>Your Cart</h1>
       <div>
-        <ul  id="CartList" style="height: 600px">
+        <ul  id="CartList" style="height: 480px">
           <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let product of internalOrder.products | slice:1; index as i">
                 <div>
                   <img src="{{product.photo}}" style="width: 50px; height:50px">
@@ -38,6 +38,10 @@
         </ul>
       </div>
       <div>
+        <div style="margin-left: 40px; margin-bottom:15px">
+          <p>Extra requests (optional) </p>
+            <textarea id="productDescription" name="productDescription" cols="50" rows="4" class="form-control" [(ngModel)]="internalOrder.specifics"></textarea>
+        </div>
           <ul>
               <li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>

@@ -90,7 +90,7 @@ export class CartComponent implements OnInit {
     let clientJSON = JSON.parse(clients);
 
     this.internalOrder.clientID = clientJSON.id;
-    this.internalOrder.specifics = 'hola, le meti un detalle';
+    //this.internalOrder.specifics = 'hola, le meti un detalle';
 
     console.log(this.internalOrder);
     this.post();

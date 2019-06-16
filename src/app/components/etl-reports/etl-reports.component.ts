@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SiteInterface} from '../../models/site-interface';
 import {Neo4jService} from '../../services/neo4j.service';
-import {StoreInterface} from '../../models/store-interface';
+import {ETL} from '../../models/etl';
 import { ETLResponseInterface } from '../../models/etl-response-interface';
 
 @Component({
@@ -12,6 +12,11 @@ import { ETLResponseInterface } from '../../models/etl-response-interface';
 export class EtlReportsComponent implements OnInit {
 
   constructor(private neo : Neo4jService) { }
+
+  private ETLMessage : ETL = {
+    response : ''
+  };
+ 
 
   private top5 : ETLResponseInterface = {
     result : null
@@ -35,10 +40,15 @@ export class EtlReportsComponent implements OnInit {
 
   private userID : string;
   private userID2 : string;
- 
+  private userID3 : string;
+  private userID4 : string;
+  private storeID : string;
 
-  ngOnInit() {
+
+
+  ngOnInit() {  
    this.getTopSites();
+ 
   }
 
   getTopSites(){
@@ -50,7 +60,9 @@ export class EtlReportsComponent implements OnInit {
   }
 
   getETL() {
-    console.log(this.neo.getETL());
+    this.neo.getETL()
+    .subscribe((sites : ETL) => (this.ETLMessage = sites));
+    console.log(this.ETLMessage);
   }
 
   getSitesByID (){
@@ -66,6 +78,15 @@ export class EtlReportsComponent implements OnInit {
     this.neo.getOrderByClientId(this.userID2)
     .subscribe((sites : ETLResponseInterface) => (this.orders = sites));
     console.log(this.orders);
+  }
+
+  getCommonClients () {
+
+    console.log(this.userID3);
+    this.neo.getCommonClients(this.userID3)
+    .subscribe((sites : ETLResponseInterface) => (this.common = sites));
+    console.log(this.common);
+
   }
 
   

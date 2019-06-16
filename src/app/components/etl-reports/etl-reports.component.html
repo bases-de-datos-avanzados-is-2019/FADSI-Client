@@ -134,13 +134,40 @@
     <div class="tab-pane fade" id="common" role="tabpanel" aria-labelledby="common-tab">
       <div class="row" style="margin-top: 45px">
         <div class="col-4">
+            <form #formCommon="ngForm" (ngSubmit)="getCommonClients()">
           <h3 class="card-title" style="margin-bottom: 20px"> Stores in common with other clients</h3>
-          <input class="form-control" type="text" placeholder="Client ID">
-          <button class="btn btn-secondary float-left" style="margin-top:10px">Search</button>
+          <input class="form-control" type="text" placeholder="Client ID"name="com" id="com" 
+          [(ngModel)]="userID3" required>
+          <button class="btn btn-secondary float-left" style="margin-top:10px" type="submit">Search</button>
+          </form>
         </div>
-        <div class="col-8 text-center">
-          <p>adios </p>
-        </div>
+        <div class="col-8">
+            <div class="row" style="margin-bottom: 15px">
+              <div class="col-4">
+                <h3>Client</h3>
+              </div>
+              <div class="col-4"></div>
+              <div class="col-4">
+                <h3 class="float-right">Matches</h3>
+              </div>
+              
+            </div>
+              <ul class="list-group mb-3" style="height: 500px" id="CartList">
+                  <li class="list-group-item d-flex justify-content-between lh-condensed"
+                  *ngFor="let com of this.common.result">                 
+                    <div>
+                        <h5 class="my-0">{{com.userName}}</h5>
+                        <span class="text-muted float-left" >{{com.userID}}</span>
+                    </div>
+                    <div class="row">
+                      
+                    </div>
+                      
+  
+                      <h6 class="float-right">{{com.totalMatches}}</h6>
+                    </li>
+              </ul>
+          </div>
       </div>
     </div>
 
@@ -154,9 +181,7 @@
 
             <button class="btn btn-secondary float-left" style="margin-top:10px">Search</button>
           </div>
-          <div class="col-8 text-center">
-            <p>adios </p>
-          </div>
+          aqui aqui auqi auq
         </div>
       </div>
     

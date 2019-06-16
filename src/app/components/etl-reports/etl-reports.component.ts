@@ -17,7 +17,6 @@ export class EtlReportsComponent implements OnInit {
     response : ''
   };
  
-
   private top5 : ETLResponseInterface = {
     result : null
   };

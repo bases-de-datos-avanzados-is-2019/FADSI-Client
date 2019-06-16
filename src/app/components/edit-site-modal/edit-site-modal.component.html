@@ -26,8 +26,9 @@
             <textarea id="siteDescription" name="siteDescription" cols="50" rows="4" class="form-control" [(ngModel)]="this.siteService.siteUpdate.description"></textarea>
           </div>
           <label for="">Products</label>
-          <div class="col-5" style=" margin-top: 15px">
-            <div *ngFor="let product of this.siteService.siteUpdate.products; index as i;">
+          <div class="row">
+          <div class="col-5" style=" margin-top: 15px" *ngFor="let product of this.siteService.siteUpdate.products; index as i;">
+            <div >
              <div class="card_register">
                <div class="card">
                  <div class="card-body">
@@ -59,6 +60,8 @@
             </div>
 
           </div>
+                      
+        </div>
 
           <button type="submit" class="btn btn-primary float-right">Update Site</button>
         </form>

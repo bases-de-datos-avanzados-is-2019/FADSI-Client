@@ -31,6 +31,7 @@ export class EditSiteModalComponent implements OnInit {
 
   updateSite() {
     this.siteService.updateSite(this.siteService.siteUpdate).subscribe(site => location.reload());
+    localStorage.removeItem('siteforUpdate');
   }
 
 }

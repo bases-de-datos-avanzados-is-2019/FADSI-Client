@@ -47,7 +47,7 @@ export class SiteRegiisterComponent implements OnInit {
   @ViewChild('search') public searchElement: ElementRef;
 
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private siteService: SiteService,
-              private mapApi: MapsApiService, private orderService: OrderService) {
+              private mapApi: MapsApiService, private neoService: Neo4jService) {
     this.geoStep = true;
     this.generalStep = false;
     this.productStep = false;
@@ -172,7 +172,7 @@ export class SiteRegiisterComponent implements OnInit {
   }
 
   test() {
-    this.orderService.getOrdersByClientId('5cfffeac8fe761000416282f').subscribe(data => (console.log(data)));
+    this.neoService.getOrderByClientId('5cfffeac8fe761000416282f').subscribe(data => (console.log(data)));
   }
 }
 

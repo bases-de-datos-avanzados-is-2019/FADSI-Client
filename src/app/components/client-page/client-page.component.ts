@@ -23,11 +23,11 @@ export class ClientPageComponent implements OnInit {
     const response = this.maps.getSitesByRadius(5000, this.siteService.selectedSite, this.sites);
     console.log(response);
     response.forEach(element => {
-    
+
       let distance = this.maps.getDistance(this.siteService.selectedSite.latitude, this.siteService.selectedSite.longitude, element.latitude, element.longitude);
       console.log(distance);
     });
-    
+
   }
 
   getListSites() {

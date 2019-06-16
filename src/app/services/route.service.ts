@@ -13,14 +13,14 @@ export class RouteService {
 
   constructor(private http: HttpClient) { }
 
-  postRoute(idCliente: string, idMainSite: string, possibleSite: any[]) {
+  postRoute(idCliente: string, idMainSite: string, possibleSites: any[]) {
     const urlApi = 'https://fadsi.herokuapp.com/api/routes';
     return this.http.post<RouteInterface>(
       urlApi,
       {
        idCliente,
        idMainSite,
-       possibleSite
+       possibleSites
       },
       {headers: this.headers})
       .pipe(map(data => data));

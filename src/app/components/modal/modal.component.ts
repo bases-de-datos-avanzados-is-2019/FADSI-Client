@@ -38,7 +38,7 @@ export class ModalComponent implements OnInit {
   public backup : SiteInterface;
   public radius : string = "";
   
-  private routeSites : RouteSite[] = [];
+  private routeSites : Object[] = [];
 
   private route : RouteInterface = {
     idCliente : "",
@@ -126,10 +126,10 @@ export class ModalComponent implements OnInit {
 
       let distance = this.maps.getDistance(lat,long,lat2,long2);
 
-      let temp : RouteSite = {
-        id : this.rs[i].id,
-        distance : distance
-      }
+        let temp = {
+        idSubSite: this.sites[i].id,
+        distance: distance
+        }
 
       this.routeSites.push(temp);
     }

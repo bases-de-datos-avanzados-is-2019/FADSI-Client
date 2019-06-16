@@ -174,14 +174,45 @@
     <div class="tab-pane fade" id="optimal" role="tabpanel" aria-labelledby="optimal-tab">
         <div class="row" style="margin-top: 45px">
           <div class="col-4">
+              <form #formRoutes="ngForm" (ngSubmit)="getOptimalRoute()">
             <h3 class="card-title" style="margin-bottom: 20px"> Optimal Route</h3>
-            <input class="form-control" type="text" placeholder="Client ID">
+            <input class="form-control" type="text" placeholder="Client ID" id="cli" name="cli"
+            [(ngModel)]="userID4" required> 
             <p style="visibility: hidden"></p>
-            <input class="form-control" type="text" placeholder="Store ID">
+            <input class="form-control" type="text" placeholder="Store ID" id="sto" name="sto"
+            [(ngModel)]="storeID" required>
 
-            <button class="btn btn-secondary float-left" style="margin-top:10px">Search</button>
+            <button class="btn btn-secondary float-left" style="margin-top:10px" type="submit">Search</button>
+            </form>
           </div>
-          aqui aqui auqi auq
+          <div class="col-8">
+              <div class="row" style="margin-bottom: 15px">
+                <div class="col-4">
+                  <h3>Stores</h3>
+                </div>
+                <div class="col-4"></div>
+                <div class="col-4">
+                  <h3 class="float-right">COST</h3>
+                </div>
+                
+              </div>
+                <ul class="list-group mb-3" style="height: 500px" id="CartList">
+                    <li class="list-group-item d-flex justify-content-between lh-condensed"
+                    *ngFor="let site of this.route.path">                 
+                      <div>
+                          <h5 class="my-0">Start: {{site.start}}</h5>
+                          <h5 class="my-0">End: {{site.end}}</h5>
+                          
+                      </div>
+                      <div class="row">
+                        
+                      </div>
+                        
+    
+                        <h6 class="float-right">{{site.cost}}</h6>
+                      </li>
+                </ul>
+            </div>
         </div>
       </div>
     

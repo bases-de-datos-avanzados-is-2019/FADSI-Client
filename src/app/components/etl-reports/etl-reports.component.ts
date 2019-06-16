@@ -88,6 +88,14 @@ export class EtlReportsComponent implements OnInit {
 
   }
 
+  getOptimalRoute () {
+    console.log(this.userID4);
+    console.log(this.storeID);
+    this.neo.getRoute(this.userID4,this.storeID)
+    .subscribe((sites : ETLResponseInterface) => (this.route = sites));
+    console.log(this.route);
+  }
+
   
 
 }

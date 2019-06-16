@@ -37,7 +37,7 @@ export class ModalComponent implements OnInit {
   public rs : SiteInterface[] = [];
   public backup : SiteInterface;
   public radius : string = "";
-  
+
   private routeSites : Object[] = [];
 
   private route : RouteInterface = {
@@ -50,7 +50,7 @@ export class ModalComponent implements OnInit {
   ngOnInit() {
     this.siteService.setInternalOrder();
     this.getListSites();
-    
+
   }
 
   getOrder() {
@@ -73,7 +73,7 @@ export class ModalComponent implements OnInit {
         this.productForCart.storeID = this.siteService.selectedSite.id;
         this.productForCart.quantity = quantity.value;
         this.siteService.internalOrder.products.push(this.productForCart);
-        this.siteService.internalOrder.total = this.siteService.internalOrder.total + 
+        this.siteService.internalOrder.total = this.siteService.internalOrder.total +
         (this.productForCart.price * parseInt(this.productForCart.quantity));
         let pr : ProductInterface = {
           name : "",
@@ -85,12 +85,12 @@ export class ModalComponent implements OnInit {
           quantity : ""
         }
         this.productForCart = pr;
-        
+
         this.index = this.index + 1;
       } else {
         this.index = this.index + 1;
       }
-      
+
     });
 
     this.index = 0;
@@ -98,7 +98,7 @@ export class ModalComponent implements OnInit {
 
     const orderString = JSON.stringify(this.siteService.internalOrder);
     localStorage.setItem('currentOrder',orderString);
-    
+
   }
 
   getListSites() {
@@ -106,7 +106,7 @@ export class ModalComponent implements OnInit {
     .subscribe((sites : SiteInterface) => ( this.backup = sites));
     console.log(this.sites);
 
-    
+
   }
 
   getNearby(){
@@ -116,7 +116,6 @@ export class ModalComponent implements OnInit {
   }
 
   postRoute() {
-
     for (let i = 0; i < this.rs.length; i++){
       let lat = this.siteService.selectedSite.latitude;
       let long = this.siteService.selectedSite.longitude;
@@ -127,8 +126,8 @@ export class ModalComponent implements OnInit {
       let distance = this.maps.getDistance(lat,long,lat2,long2);
 
         let temp = {
-        idSubSite: this.sites[i].id,
-        distance: distance
+        "idSubSite": this.sites[i].id,
+        "distance": distance
         }
 
       this.routeSites.push(temp);
@@ -144,9 +143,7 @@ export class ModalComponent implements OnInit {
     this.route.idMainSite = mainSiteid;
     this.route.possibleSites = this.routeSites;
 
-    console.log(this.route);
-
-    this.routeService.postRoute(ids,mainSiteid,this.routeSites);
+    this.routeService.postRoute(ids,mainSiteid,this.routeSites).subscribe(data => console.log(data));
     this.routeSites = [];
     this.rs = [];
   }

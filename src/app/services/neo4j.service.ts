@@ -33,5 +33,10 @@ export class Neo4jService {
     return this.http.get(urlApi);
   }
 
+  getRoute(clientId: string, siteId: string){
+    const urlApi = `https://fadsi.herokuapp.com/neo/path/client/${clientId}/site/${siteId}`;
+    return this.http.get(urlApi);
+  }
+
 
 }

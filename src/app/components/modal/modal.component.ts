@@ -143,7 +143,7 @@ export class ModalComponent implements OnInit {
     this.route.idMainSite = mainSiteid;
     this.route.possibleSites = this.routeSites;
 
-    this.routeService.postRoute(ids,mainSiteid,this.routeSites).subscribe(data => console.log(data));
+    this.routeService.postRoute(ids,mainSiteid,this.routeSites).subscribe();
     this.routeSites = [];
     this.rs = [];
   }

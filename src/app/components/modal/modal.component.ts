@@ -4,6 +4,9 @@ import {SiteInterface} from '../../models/site-interface';
 import {ProductInterface} from '../../models/product-interface';
 import {internalOrderInterface} from '../../models/internalOrder-Interface';
 import {MapsApiService} from '../../services/MapApiService';
+import {RouteService} from '../../services/route.service';
+import {RouteSite} from '../../models/route-site-interface';
+import {RouteInterface} from '../../models/route-interface';
 
 
 import {NgForm, FormsModule} from '@angular/forms';
@@ -17,7 +20,7 @@ import { $ } from 'protractor';
 })
 export class ModalComponent implements OnInit {
 
-  constructor(private siteService : SiteService, private location : Location, private maps : MapsApiService) { }
+  constructor(private siteService : SiteService, private location : Location, private maps : MapsApiService, private routeService : RouteService) { }
   private index = 0;
   public productForCart : ProductInterface = {
     name : "",
@@ -30,12 +33,24 @@ export class ModalComponent implements OnInit {
   }
 
   public currentOrder : internalOrderInterface;
-  public sites: SiteInterface;
+  public sites: SiteInterface[];
+  public rs : SiteInterface[] = [];
   public backup : SiteInterface;
+  public radius : string = "";
+  
+  private routeSites : RouteSite[] = [];
+
+  private route : RouteInterface = {
+    idCliente : "",
+    idMainSite : "",
+    possibleSites : this.routeSites
+  };
+
 
   ngOnInit() {
     this.siteService.setInternalOrder();
     this.getListSites();
+    
   }
 
   getOrder() {
@@ -88,8 +103,58 @@ export class ModalComponent implements OnInit {
 
   getListSites() {
     this.siteService.getSites()
-    .subscribe((sites : SiteInterface) => (this.sites = sites , this.backup = sites));
+    .subscribe((sites : SiteInterface) => ( this.backup = sites));
     console.log(this.sites);
+
+    
+  }
+
+  getNearby(){
+    let rad = parseInt(this.radius);
+    this.sites = this.maps.getSitesByRadius(rad, this.siteService.selectedSite, this.backup);
+    console.log(this.sites);
+  }
+
+  postRoute() {
+
+    for (let i = 0; i < this.rs.length; i++){
+      let lat = this.siteService.selectedSite.latitude;
+      let long = this.siteService.selectedSite.longitude;
+
+      let lat2 = this.rs[i].latitude;
+      let long2 = this.rs[i].longitude;
+
+      let distance = this.maps.getDistance(lat,long,lat2,long2);
+
+      let temp : RouteSite = {
+        id : this.rs[i].id,
+        distance : distance
+      }
+
+      this.routeSites.push(temp);
+    }
+
+    let clients = localStorage.getItem('currentUser');
+    let clientJSON = JSON.parse(clients);
+    let ids = clientJSON.id;
+
+    let mainSiteid = this.siteService.selectedSite.id;
+
+    this.route.idCliente = ids;
+    this.route.idMainSite = mainSiteid;
+    this.route.possibleSites = this.routeSites;
+
+    console.log(this.route);
+
+    this.routeService.postRoute(ids,mainSiteid,this.routeSites);
+    this.routeSites = [];
+    this.rs = [];
+  }
+
+  addToRoute(index : number) {
+    let forAdd : SiteInterface = this.sites[index];
+    this.rs.push(forAdd);
+    console.log(this.rs);
   }
 
 }

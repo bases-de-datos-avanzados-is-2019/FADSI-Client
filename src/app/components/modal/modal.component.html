@@ -39,14 +39,15 @@
                                         <h6 style="margin-top: 15px; margin-bottom: 15px"> Nearby Locatios</h6>
 
                                         <div class="row" style="margin-bottom: 20px">
-                                          <input type="text" class=form-control style="width: 300px;margin-left: 15px" placeholder="Radius (in meters)">
-                                          <button class="btn btn-sm btn-secondary" style="margin-left: 15px">Refresh</button>
+                                          <input type="number" class=form-control style="width: 300px;margin-left: 15px" placeholder="Radius (in meters)"
+                                          id ="radius" name ="radius" [(ngModel)] = "this.radius">
+                                          <button class="btn btn-sm btn-secondary" style="margin-left: 15px" (click)="getNearby()">Refresh</button>
                                         </div>
 
 
                                         <ul class="list-group mb-3" style="height: 150px; width:400px" id="CartList">
                                             <li class="list-group-item d-flex justify-content-between lh-condensed"
-                                            *ngFor="let site of sites">                 
+                                            *ngFor="let site of sites; index as i">                 
                                               <div>
                                                   <h5 class="my-0">{{site.name}}</h5>
                                                   <span class="text-muted float-left" >{{site.id}}</span>
@@ -56,11 +57,11 @@
                                               </div>
                                                 
                             
-                                                <input type="checkbox" class="float-right">
+                                                <input type="checkbox" class="float-right" (click)="addToRoute(i)">
                                               </li>
                                         </ul>
                                         
-                                        <button class="btn btn-secondary btn-md">Add to route</button>
+                                        <button class="btn btn-secondary btn-md"(click)="postRoute()">Add to route</button>
                                     </div>
                                   </div>
                                </div>

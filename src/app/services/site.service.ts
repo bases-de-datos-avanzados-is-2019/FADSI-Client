@@ -47,12 +47,14 @@ export class SiteService {
     website: '',
     products: null,
     id: '',
-  }
+  };
 
   public internalOrder : internalOrderInterface = {
     total : 0,
     products : [null]
   }
+
+
 
   setInternalOrder(){
     const orderString = localStorage.getItem('currentOrder');

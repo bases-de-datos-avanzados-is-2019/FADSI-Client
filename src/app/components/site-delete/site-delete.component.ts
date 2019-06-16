@@ -33,6 +33,8 @@ export class SiteDeleteComponent implements OnInit {
 
   preUpdateSite(site: SiteInterface) {
     this.siteService.siteUpdate = Object.assign({}, site);
+
+
   }
 
 }

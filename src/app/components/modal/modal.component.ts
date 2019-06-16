@@ -3,6 +3,7 @@ import {SiteService} from '../../services/site.service';
 import {SiteInterface} from '../../models/site-interface';
 import {ProductInterface} from '../../models/product-interface';
 import {internalOrderInterface} from '../../models/internalOrder-Interface';
+import {MapsApiService} from '../../services/MapApiService';
 
 
 import {NgForm, FormsModule} from '@angular/forms';
@@ -16,7 +17,7 @@ import { $ } from 'protractor';
 })
 export class ModalComponent implements OnInit {
 
-  constructor(private siteService : SiteService, private location : Location) { }
+  constructor(private siteService : SiteService, private location : Location, private maps : MapsApiService) { }
   private index = 0;
   public productForCart : ProductInterface = {
     name : "",
@@ -29,9 +30,12 @@ export class ModalComponent implements OnInit {
   }
 
   public currentOrder : internalOrderInterface;
+  public sites: SiteInterface;
+  public backup : SiteInterface;
 
   ngOnInit() {
     this.siteService.setInternalOrder();
+    this.getListSites();
   }
 
   getOrder() {
@@ -80,6 +84,12 @@ export class ModalComponent implements OnInit {
     const orderString = JSON.stringify(this.siteService.internalOrder);
     localStorage.setItem('currentOrder',orderString);
     
+  }
+
+  getListSites() {
+    this.siteService.getSites()
+    .subscribe((sites : SiteInterface) => (this.sites = sites , this.backup = sites));
+    console.log(this.sites);
   }
 
 }

@@ -21,7 +21,7 @@ export class OrderHistoryComponent implements OnInit {
 
   }
 
-  getAllOrders (){
+  getAllOrders(){
     let clients = localStorage.getItem('currentUser');
     let clientJSON = JSON.parse(clients);
     let ids = clientJSON.id;

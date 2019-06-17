@@ -12,6 +12,7 @@ export class ClientPageComponent implements OnInit {
 
   constructor(private siteService : SiteService, private maps : MapsApiService, private mapsAPILoader: MapsAPILoader) { }
   public sites: SiteInterface;
+  public backup : SiteInterface[];
 
   ngOnInit() {
     this.mapsAPILoader.load();
@@ -34,6 +35,17 @@ export class ClientPageComponent implements OnInit {
     this.siteService.getSites()
     .subscribe((sites : SiteInterface) => (this.sites = sites));
     console.log(this.sites);
+    
+  }
+
+  getByType(){
+
+    console.log('here i am');
+    let searchTerm = "food";
+
+    this.backup.forEach(element => {
+      
+    });
   }
 
 }

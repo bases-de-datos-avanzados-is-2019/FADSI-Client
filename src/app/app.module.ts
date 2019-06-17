@@ -25,6 +25,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { CartComponent } from './components/cart/cart.component';
 import { EditSiteModalComponent } from './components/edit-site-modal/edit-site-modal.component';
 import { EtlReportsComponent } from './components/etl-reports/etl-reports.component';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { EtlReportsComponent } from './components/etl-reports/etl-reports.compon
     ModalComponent,
     CartComponent,
     EditSiteModalComponent,
-    EtlReportsComponent
+    EtlReportsComponent,
+    OrderHistoryComponent
   ],
   imports: [
     BrowserModule,

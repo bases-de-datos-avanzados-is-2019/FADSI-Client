@@ -44,6 +44,7 @@ export class OrderService {
   }
 
   getOrdersByClientId(clientId: string){
+    console.log(clientId);
     const urlApi = `https://fadsi.herokuapp.com/api/orders?filter=%7B%22where%22%3A%7B%22idCliente%22%3A%7B%22like%22%3A%22${clientId}%22%7D%7D%7D`;
     return (this.orders = this.http.get(urlApi));
   }

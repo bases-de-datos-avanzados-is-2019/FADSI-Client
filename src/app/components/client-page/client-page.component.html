@@ -1,4 +1,9 @@
 <div class="container-fluid" style="margin-top: 105px">
+<div class="row">
+  <div class="col-12">
+    <button type="button" class="btn btn-secondary" (click)="getByType()">Search</button>
+  </div>
+</div>
 
   <div class="row">
       <div class="col-md-4" *ngFor="let site of sites">
@@ -10,7 +15,8 @@
             <span class="badge badge-pill badge badge-secondary" *ngFor="let type of site.type">{{type}}</span>
 
             <div class="row" style="margin-top: 20px">
-                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#SiteModal" style="width: 300px; margin-left: 15px" (click)="onViewSite(site)">View</button>
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#SiteModal"
+                 style="width: 300px; margin-left: 15px" (click)="onViewSite(site)">View</button>
             </div>
           </div>
         </div>

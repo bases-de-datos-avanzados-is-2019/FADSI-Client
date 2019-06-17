@@ -38,5 +38,10 @@ export class Neo4jService {
     return this.http.get(urlApi);
   }
 
+  postEmail(clientId: string){
+    const urlApi = `https://fadsi.herokuapp.com/email/${clientId}`;
+    return this.http.get(urlApi);
+  }
+
 
 }

@@ -15,7 +15,6 @@ export class OrderHistoryComponent implements OnInit {
   public ordersTng: OrderInterface;
 
   ngOnInit() {
-    console.log(this.ordersTng);
     this.getAllOrders();
     console.log(this.ordersTng);
 

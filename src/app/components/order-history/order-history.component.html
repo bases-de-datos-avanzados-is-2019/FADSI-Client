@@ -16,7 +16,30 @@
                             <ul  id="CartList" style="height: 480px">
                               <li class="list-group-item d-flex justify-content-between lh-condensed"
                               *ngFor="let item of this.ordersTng">
-                                    <p >{{item.totalSum}}</p>
+                                    <div>
+                                        <h5 class="my-0">{{item.date}}</h5>
+                                        <span class="text-muted float-left" >Status: {{item.status}}</span>
+                                    </div>
+
+                                    <div>
+                                      <h6>Products</h6>
+                                      <ul>
+                                        <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let prod of item.items">
+                                          <div class="row">
+                                              <img src="{{prod.photo}}" height="50px" width="50px" class="float-left">
+                                            <div class="col-8">
+                                                <p style="margin-right: 10px">{{prod.name}}</p>
+                                                <span class="text-muted float-left">{{prod.store}}</span>
+                                            </div>
+                                            
+                                                
+                                          
+                                            
+                                          </div>
+                                          
+                                        </li>
+                                      </ul>
+                                    </div>
                               </li>
                             </ul>
                           </div>

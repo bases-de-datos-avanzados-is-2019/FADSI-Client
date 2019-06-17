@@ -20,7 +20,7 @@ export class SiteService {
     address: '',
     name: 'Test Name',
     description: '',
-    deliveryPersonnelQuantity: 0,
+    deliveryPersonnelQuantity: null,
     type: null,
     rating: 0,
     image: '',

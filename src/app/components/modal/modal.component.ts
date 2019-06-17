@@ -7,6 +7,7 @@ import {MapsApiService} from '../../services/MapApiService';
 import {RouteService} from '../../services/route.service';
 import {RouteSite} from '../../models/route-site-interface';
 import {RouteInterface} from '../../models/route-interface';
+import {Neo4jService} from '../../services/neo4j.service';
 
 
 import {NgForm, FormsModule} from '@angular/forms';
@@ -20,7 +21,8 @@ import { $ } from 'protractor';
 })
 export class ModalComponent implements OnInit {
 
-  constructor(private siteService : SiteService, private location : Location, private maps : MapsApiService, private routeService : RouteService) { }
+  constructor(private siteService : SiteService, private location : Location, 
+    private maps : MapsApiService, private routeService : RouteService, private neo : Neo4jService) { }
   private index = 0;
   public productForCart : ProductInterface = {
     name : "",
@@ -144,6 +146,7 @@ export class ModalComponent implements OnInit {
     this.route.possibleSites = this.routeSites;
 
     this.routeService.postRoute(ids,mainSiteid,this.routeSites).subscribe();
+    this.neo.postEmail(ids).subscribe();
     this.routeSites = [];
     this.rs = [];
   }

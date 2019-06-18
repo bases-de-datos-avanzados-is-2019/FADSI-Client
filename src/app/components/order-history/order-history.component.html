@@ -16,30 +16,65 @@
                             <ul  id="CartList" style="height: 480px">
                               <li class="list-group-item d-flex justify-content-between lh-condensed"
                               *ngFor="let item of this.ordersTng">
-                                    <div>
-                                        <h5 class="my-0">{{item.date}}</h5>
-                                        <span class="text-muted float-left" >Status: {{item.status}}</span>
+
+                              <div class="row">
+                                <div class="col-12">
+                                  <div class="row">
+                                    <div class="col-8">
+                                        <div>
+                                            <h5 class="my-0">{{item.date}}</h5>
+                                            <span class="text-muted float-left" >Status: {{item.status}}</span>
+                                        </div>
+
+                                        <div style="margin-top: 50px">
+                                            <h6>Products 
+                                                <span class="badge badge-pill badge-primary" style="height: 20px">
+                                                    <p>{{item.items.length}}</p>
+                                                    </span>
+                                            </h6>
+                                            <ul>
+                                                <li *ngFor="let prod of item.items">
+                                                      <p style="margin-right: 10px">{{prod.name}}:
+                                                          <span class="badge badge-pill badge-info" style="height: 20px">
+                                                              <p>{{prod.quantity}}</p>
+                                                              </span>
+                                                      </p>
+                                                      <a style="color: blue; margin-left:5px">
+                                                          (CRC){{prod.price}}
+                                                        </a>
+                                                  
+                                                </li>
+                                              </ul>
+                                        </div>
+                                       
                                     </div>
 
-                                    <div>
-                                      <h6>Products</h6>
-                                      <ul>
-                                        <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let prod of item.items">
-                                          <div class="row">
-                                              <img src="{{prod.photo}}" height="50px" width="50px" class="float-left">
-                                            <div class="col-8">
-                                                <p style="margin-right: 10px">{{prod.name}}</p>
-                                                <span class="text-muted float-left">{{prod.store}}</span>
-                                            </div>
-                                            
-                                                
-                                          
-                                            
-                                          </div>
-                                          
-                                        </li>
-                                      </ul>
+                                    <div class="col-4">
+                                      <h5>Aditional Specifications:</h5>
+                                        <h6>{{item.extraDetail}}</h6>
+                                       
                                     </div>
+
+                                    <div class="col-12">
+                                        <h3 class="float-right" style="color: blue">Total(CRC): {{item.totalSum}}</h3>
+                                      </div>
+                                     
+                                  </div>
+                                    
+
+                                    
+
+                                </div>
+
+                              
+
+                                
+                                   
+                              
+                              </div>
+                                    
+
+                                    
                               </li>
                             </ul>
                           </div>
@@ -48,7 +83,7 @@
 
                   <div class="modal-footer">
 
-                    <button type="button" class="btn btn-secondary" (click)="getAllOrders()">OK</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
 
                   </div>
                 </div>

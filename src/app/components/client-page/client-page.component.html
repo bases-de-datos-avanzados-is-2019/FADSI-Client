@@ -1,7 +1,11 @@
 <div class="container-fluid" style="margin-top: 105px">
-<div class="row">
-  <div class="col-12">
-    <button type="button" class="btn btn-secondary" (click)="getByType()">Search</button>
+<div class="row" style="margin-bottom: 20px">
+  
+  <div class="col-4">
+    <input class="form-control" type="text" id="searchterm" name="searchterm" placeholder="Search term" [(ngModel)]="this.search">
+    <button type="button" class="btn btn-secondary float-left" (click)="getByType()" style="margin-top: 5px">Search</button>
+    <button type="button" class="btn btn-secondary float-left" (click)="getListSites()" style="margin-top: 5px; margin-left: 5px">Clear</button>
+
   </div>
 </div>
 
@@ -12,7 +16,7 @@
           <div class="card-body">
             <h4 class="card-title" id="titleCard" style="margin-bottom: 20px">{{site.name}}</h4>
             <p class="card-text">{{site.description}}</p>
-            <span class="badge badge-pill badge badge-secondary" *ngFor="let type of site.type">{{type}}</span>
+            <span class="badge badge-pill badge badge-secondary" *ngFor="let type of site.type" style="margin-left: 1px">{{type}}</span>
 
             <div class="row" style="margin-top: 20px">
                 <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#SiteModal"

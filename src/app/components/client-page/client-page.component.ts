@@ -11,8 +11,9 @@ import {MapsApiService} from '../../services/MapApiService';
 export class ClientPageComponent implements OnInit {
 
   constructor(private siteService : SiteService, private maps : MapsApiService, private mapsAPILoader: MapsAPILoader) { }
-  public sites: SiteInterface;
-  public backup : SiteInterface[];
+  public sites: SiteInterface[];
+  public backup : SiteInterface[] = [];
+  public search : string = "";
 
   ngOnInit() {
     this.mapsAPILoader.load();
@@ -33,19 +34,33 @@ export class ClientPageComponent implements OnInit {
 
   getListSites() {
     this.siteService.getSites()
-    .subscribe((sites : SiteInterface) => (this.sites = sites));
+    .subscribe((sites : SiteInterface[]) => (this.sites = sites));
     console.log(this.sites);
     
   }
 
   getByType(){
 
-    console.log('here i am');
-    let searchTerm = "food";
+    let result : SiteInterface[] = [];
+    
+    let searchTerm = this.search;
 
-    this.backup.forEach(element => {
-      
+ 
+
+    
+
+    this.sites.forEach(element => {
+      console.log("element");
+      element.type.forEach(type =>{
+        console.log(type);
+        if (type === searchTerm){
+          result.push(element);
+        }
+      });
     });
+
+    console.log(result);
+    this.sites = result;
   }
 
 }

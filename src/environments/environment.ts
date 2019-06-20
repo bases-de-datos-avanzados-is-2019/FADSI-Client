@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-  MAPS_API: 'AIzaSyAPc-32Ai_H47c7T4AXb-881dxkS3yiSmM'
 };
 
 /*
